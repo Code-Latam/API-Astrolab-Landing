@@ -1,0 +1,30 @@
+---
+import Navbar from "@/layouts/components/Navbar.astro";
+---
+
+<header class="header">
+  <Navbar />
+</header>
+
+<style>
+  .header {
+    height: 7.2rem;
+    padding: 0 3.6rem;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  }
+
+  html[data-theme="light"] .header {
+    background-color: var(--clr-white);
+    color: var(--clr-black);
+  }
+
+  html[data-theme="dark"] .header {
+    background-color: var(--clr-grey-obsidian);
+    color: var(--clr-grey-smoke);
+  }
+</style>

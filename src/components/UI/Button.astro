@@ -1,0 +1,134 @@
+---
+import { icons } from '@/assets';
+
+interface Props {
+  borderRadius?: "xs" | "sm";
+  disabled?: boolean;
+  fullWidth?: boolean;
+  id?: string;
+  loading?: boolean;
+  type?: "button" | "submit" | "reset";
+  variant?: "primary" | "secondary" | "tertiary";
+}
+
+const {
+    borderRadius = "xs",
+    disabled,
+    fullWidth = false,
+    id,
+    loading = false,
+    type,
+    variant = "primary"
+  } = Astro.props
+---
+
+<button
+  id={id}
+  type={type}
+  disabled={disabled}
+  class:list={[
+    fullWidth ? "full-width" : "regular-width",
+    `border-r-${borderRadius}`,
+    variant,
+    loading ? "loading": ""
+  ]}>
+  <icons.Spinner class="button__spinner" />
+  <div>
+    <span class="button__label button__label--default">
+      <slot name="default" />
+    </span>
+    <span class="button__label button__label--loading">
+      <slot name="loading" />
+    </span>
+  </div>
+</button>
+
+<style>
+  button {
+    height: 3.75em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25em;
+    transition: background-color 150ms ease-in-out, outline-color 150ms ease-in-out;
+    outline-color: transparent;
+    outline-width: 4px;
+    outline-style: solid;
+    outline-offset: -2px;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .regular-width {
+    padding-left: 4.6rem;
+    padding-right: 4.6rem;
+    align-self: self-start;
+  }
+
+  .border-r-xs {
+    border-radius: 0.4rem;
+  }
+
+  .border-r-sm {
+    border-radius: 0.8rem;
+  }
+
+  .primary {
+    background-color: var(--clr-red-brand-light);
+    color: var(--clr-white);
+  }
+
+  .primary:hover,
+  .primary:focus-visible {
+    background-color: var(--clr-red-dark);
+  }
+
+  .primary:focus-visible {
+    outline-color: var(--clr-red-medium);
+  }
+
+  html[data-theme="dark"] .primary {
+    background-color: var(--clr-red-brand-dark-accent);
+    color: var(--clr-grey-smoke);
+  }
+
+  html[data-theme="dark"] .primary:hover,
+  html[data-theme="dark"] .primary:focus-visible {
+    background-color: var(--clr-red-brand-dark);
+  }
+
+  html[data-theme="dark"] .primary:focus-visible {
+    outline-color: var(--clr-red-smoke);
+  }
+
+  button:disabled,
+  .primary:disabled:hover {
+    background-color: var(--clr-red-medium);
+    color: var(--clr-red-smoke);
+  }
+
+  html[data-theme="dark"] button:disabled,
+  html[data-theme="dark"] .primary:disabled:hover {
+    background-color: var(--clr-red-dark);
+    color: var(--clr-red-light);
+  }
+
+  .button__spinner, .button__label--loading {
+    display: none;
+  }
+
+  .loading > svg.button__spinner,
+  .loading .button__label--loading {
+    display: inline-block;
+  }
+
+  .loading .button__label--default {
+    display: none;
+  }
+</style>

@@ -1,0 +1,220 @@
+---
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+import { sections } from "@/i18n";
+import FormBlock from "@/components/UI/FormBlock.astro";
+import FormLabel from "@/components/UI/FormLabel.astro";
+import FormInput from "@/components/UI/FormInput.astro";
+import Button from "@/components/UI/Button.astro";
+import Select from "@/components/UI/Select.astro";
+import Toast from "@/components/UI/Toast.astro";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const d = getDictionary(currentLanguage);
+const translatedSections = sections[currentLanguage];
+---
+
+<section id={translatedSections.subscription} class="subscription">
+  <div class="split-layout-col">
+    <div class="subscription__content">
+      <h2 class="subscription__heading" set:html={d.subscription.heading}>
+      </h2>
+      <form id="subscriptionForm" class="subscription__form">
+        <input type="hidden" name="language" value={currentLanguage}>
+        <FormBlock id="roleFormBlock">
+          <FormLabel htmlFor="role" slot="label">
+            {d.subscription.form_role_input.label}
+          </FormLabel>
+          <Select
+            id="role"
+            name="role"
+            options={d.subscription.form_role_input.options}
+            slot="control"
+          />
+        </FormBlock>
+        <FormBlock id="emailFormBlock" errors={d.subscription.form_toEmail_input.errors}>
+          <FormLabel htmlFor="toEmail" slot="label">
+            {d.subscription.form_toEmail_input.label}
+          </FormLabel>
+          <FormInput
+            id="email"
+            type="email"
+            name="toEmail"
+            placeholder={d.subscription.form_toEmail_input.placeholder}
+            required
+            slot="control"
+          />
+        </FormBlock>
+        <div class="subscription__form-button-container">
+          <Button id="subscriptionFormButton" type="submit" disabled>
+            <span slot="default">
+              {d.subscription.form_submit_button.default}
+            </span>
+            <span slot="loading">
+              {d.subscription.form_submit_button.loading}
+            </span>
+          </Button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <Toast id="statusToast" responses={d.subscription.server_responses} />
+</section>
+
+<style>
+  .subscription {
+    padding: var(--spacing-vertical) var(--spacing-horizontal);
+    background-color: var(--clr-black);
+    color: var(--clr-grey-smoke);
+    flex: 1;
+  }
+
+  /* min-width: 792px */
+  @media (min-width: 49.5em) {
+    .split-layout-col {
+      max-width: calc(var(--max-width-section) / 2 - var(--spacing-horizontal));
+      margin-left: auto;
+    }
+
+    .subscription__content {
+      max-width: var(--max-width-subsection);
+      margin-right: auto;
+    }
+  }
+
+  .subscription__heading {
+    max-width: 40ch;
+  }
+
+  :global(.subscription__heading span) {
+    color: var(--clr-red-light);
+  }
+
+  .subscription__form {
+    margin-top: 4rem;
+    max-width: 54rem;
+  }
+
+  .subscription__form-button-container {
+    margin-top: 3.2rem;
+  }
+</style>
+
+<script>
+  import { endpoints, regex } from "@/constants";
+  let timer: NodeJS.Timeout;
+  let touchedEmail = false;
+
+  const form = document.getElementById("subscriptionForm") as HTMLFormElement;
+  const email = document.getElementById("email") as HTMLInputElement;
+  const emailBlock = document.getElementById("emailFormBlock") as HTMLElement;
+  const submitButton = document.getElementById("subscriptionFormButton") as HTMLButtonElement;
+  const subscriptionStatusToast = document.getElementById("statusToast") as HTMLElement;
+  const subscriptionToastCloseButton = subscriptionStatusToast.querySelector(".toast__close-button") as HTMLButtonElement;
+
+  function validateEmail(email: string) {
+    const trimmedEmail = email?.trim();
+    if(!trimmedEmail) return "blank"
+
+    const validEmail = regex.EMAIL.test(trimmedEmail);
+    if(!validEmail) return "wrong-format"
+
+    return "";
+  }
+
+  function updateFeedback(errorMessage: string) {
+    if(errorMessage) {
+      (emailBlock.querySelectorAll(".form-block__feedback") as NodeListOf<HTMLElement>).forEach((feedback) => {
+        if(feedback.dataset.feedback !== errorMessage) {
+          feedback.style.display = "none"
+        } else {
+          feedback.style.display = "block"
+        }
+      })
+      submitButton.disabled = true;
+    } else {
+      (emailBlock.querySelectorAll(".form-block__feedback") as NodeListOf<HTMLElement>).forEach((feedback) => {
+        feedback.style.display = "none";
+      })
+      submitButton.disabled = false;
+    }
+  }
+
+  function openToast(status: number | string) {
+    const errorResponse = +status >= 400;
+    const variant = errorResponse ? "error" : "success";
+    (subscriptionStatusToast.querySelectorAll(".toast__message") as NodeListOf<HTMLElement>).forEach(message => {
+      if(message.className === `toast__message toast__message--${status}`) {
+        message.style.display = "block"
+      } else {
+        message.style.display = "none"
+      }
+    })
+    subscriptionToastCloseButton.disabled = false;
+    subscriptionStatusToast.className = `toast active ${variant}`;
+  }
+
+  function closeToast() {
+    subscriptionStatusToast.classList.remove("active");
+    subscriptionToastCloseButton.disabled = true;
+    if(+(submitButton.dataset.shouldDisable as string)) {
+      submitButton.disabled = true;
+    } else {
+      submitButton.disabled = false;
+    }
+    submitButton.removeAttribute("should-disable");
+  }
+
+  function resetForm() {
+    form.reset();
+    touchedEmail = false;
+    submitButton.disabled = true;
+  }
+
+  email.addEventListener("input", function (e) {
+    const errorMessage = validateEmail((e.target as HTMLInputElement).value);
+    if(errorMessage && !touchedEmail) return;
+    updateFeedback(errorMessage);
+  });
+
+  email.addEventListener("blur", function listenEmailBlur(e) {
+    touchedEmail = true;
+    const errorMessage = validateEmail((e.target as HTMLInputElement).value);
+    updateFeedback(errorMessage);
+    email.removeEventListener("blur", listenEmailBlur);
+  });
+
+  form?.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    submitButton.classList.add("loading");
+    submitButton.disabled = true;
+
+    const formData = new FormData(form);
+    const body = Object.fromEntries(formData.entries());
+    body.toEmail = (body.toEmail as string).trim().toLowerCase();
+
+    const { status } = await fetch(endpoints.sendInvite, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body)
+    });
+
+    openToast(status);
+    submitButton.classList.remove("loading");
+    if(+status >= 400) {
+      submitButton.setAttribute("data-should-disable", "0");
+    } else {
+      submitButton.setAttribute("data-should-disable", "1");
+      resetForm();
+    }
+
+    timer = setTimeout(closeToast, 5000);
+  });
+
+  subscriptionToastCloseButton.addEventListener("click", () => {
+    closeToast();
+    clearTimeout(timer);
+  })
+</script>

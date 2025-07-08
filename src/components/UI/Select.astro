@@ -1,0 +1,50 @@
+---
+interface Option {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  id?: string;
+  name: string;
+  selectClass?: string;
+  optionClass?: string;
+  required?: boolean;
+  options: Array<Option>
+}
+
+const { id, name, selectClass, optionClass, required = false, options } = Astro.props;
+---
+
+<select id={id} name={name} class={selectClass} required={required}>
+  {
+    options.map(({ label, value }) => (
+      <option
+        value={value}
+        class={optionClass}>
+          {label}
+      </option>
+    ))
+  }
+</select>
+
+<style>
+  select {
+    width: 100%;
+    display: block;
+    height: 4.8rem;
+    border: none;
+    background-color: var(--clr-grey-graphite);
+    color: inherit;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.6rem;
+    border-radius: 0.8rem;
+    transition: background-color 150ms ease-in-out;
+  }
+
+  select:hover,
+  select:focus-visible {
+    background-color: var(--clr-grey-dark);
+    outline: none;
+  }
+</style>

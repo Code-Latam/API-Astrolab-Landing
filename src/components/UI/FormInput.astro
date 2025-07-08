@@ -1,0 +1,72 @@
+---
+interface Props {
+  id?: string;
+  type?: astroHTML.JSX.HTMLInputTypeAttribute;
+  name: string;
+  className?: string;
+  placeholder?: string;
+  required?: boolean;
+}
+
+const { id, type = "text", name, className, placeholder, required = false } = Astro.props;
+---
+
+<input
+  id={id}
+  type={type}
+  name={name}
+  class={className}
+  placeholder={placeholder}
+  required={required}
+/>
+
+<style>
+  input {
+    width: 100%;
+    display: block;
+    height: 4.8rem;
+    border: none;
+    background-color: var(--clr-white);
+    color: inherit;
+    padding: 1.6rem;
+    font-size: 1.6rem;
+    border-radius: 0.8rem;
+    transition: background-color 150ms ease-in-out, outline-color 150ms ease-in-out;
+    outline-color: transparent;
+    outline-width: 4px;
+    outline-style: solid;
+    outline-offset: -2px;
+  }
+
+  input:hover,
+  input:focus-visible {
+    background-color: var(--clr-white);
+  }
+
+  input:focus-visible {
+    outline-color: var(--clr-grey-charcoal);
+  }
+
+  input::selection {
+    background-color: var(--clr-grey-obsidian);
+    color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] input {
+    background-color: var(--clr-grey-graphite);
+  }
+
+  html[data-theme="dark"] input:hover,
+  html[data-theme="dark"] input:focus-visible {
+    background-color: var(--clr-grey-dark);
+  }
+
+  html[data-theme="dark"] input:focus-visible {
+    outline-color: var(--clr-grey-smoke);
+  }
+
+  html[data-theme="dark"] input::selection {
+    background-color: var(--clr-grey-smoke);
+    color: var(--clr-black);
+  }
+</style>

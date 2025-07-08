@@ -1,0 +1,242 @@
+---
+import { Image } from "astro:assets"
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+import { photos } from "@/assets";
+import { sections } from "@/i18n";
+import { links } from "@/constants";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const translatedSections = sections[currentLanguage];
+const d = getDictionary(currentLanguage);
+---
+
+<section class="hero">
+  <div class="hero__content">
+    <div id="heroImageContainer" class="hero__image-container">
+      <div
+        class="hero__image-container--mobile"
+        style="background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wEEEAAKAAoACgAKAAsACgAMAA0ADQAMABAAEQAPABEAEAAYABYAFAAUABYAGAAkABoAHAAaABwAGgAkADYAIgAoACIAIgAoACIANgAwADoALwAsAC8AOgAwAFYARAA8ADwARABWAGQAVABPAFQAZAB5AGwAbAB5AJgAkQCYAMcAxwEMEQAKAAoACgAKAAsACgAMAA0ADQAMABAAEQAPABEAEAAYABYAFAAUABYAGAAkABoAHAAaABwAGgAkADYAIgAoACIAIgAoACIANgAwADoALwAsAC8AOgAwAFYARAA8ADwARABWAGQAVABPAFQAZAB5AGwAbAB5AJgAkQCYAMcAxwEM/8IAEQgADwAUAwEiAAIRAQMRAf/EACsAAAMBAQAAAAAAAAAAAAAAAAAFBgIEAQEBAAAAAAAAAAAAAAAAAAABBP/aAAwDAQACEAMQAAAAfZj+6OqiE4n/xAAdEAABBQEBAQEAAAAAAAAAAAABAAIDBBETIhQh/9oACAEBAAE/AO9cShi+mq6fmHImtp9J9iWGyPWhyi5den7pRezTi//EABYRAQEBAAAAAAAAAAAAAAAAADEQEf/aAAgBAgEBPwDQn//EABgRAAIDAAAAAAAAAAAAAAAAAAECECEx/9oACAEDAQE/AFAvY//Z');
+        background-size: contain;"
+        >
+        <Image
+          class="hero__image hero__image--mobile"
+          src={photos.HeroMobile}
+          alt=""
+          loading="eager"
+          decoding="async"
+          style="opacity: 0; object-fit: contain;"
+          onload="this.parentElement.style.backgroundImage = 'none'; this.style.opacity = 1;"
+        />
+      </div>
+      <div
+        class="hero__image-container--desktop"
+        style="background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAgICAgJCAkKCgkNDgwODRMREBARExwUFhQWFBwrGx8bGx8bKyYuJSMlLiZENS8vNUROQj5CTl9VVV93cXecnNEBCAgICAkICQoKCQ0ODA4NExEQEBETHBQWFBYUHCsbHxsbHxsrJi4lIyUuJkQ1Ly81RE5CPkJOX1VVX3dxd5yc0f/CABEIABMAFAMBIgACEQEDEQH/xAAtAAEBAAMBAAAAAAAAAAAAAAAABgEDBAUBAQEBAAAAAAAAAAAAAAAAAAIDBf/aAAwDAQACEAMQAAAArcw27P0Ll4xGF7yFO8B//8QAHxAAAgICAgMBAAAAAAAAAAAAAgMAAQQhBRIREyIy/9oACAEBAAE/ADJCyEbLdx9qVQ/VbgYoGNFRVuM5Uqyq7zLN7zAwZ8zFyHCkK7TlNGuYxF6x3BYfj9XP/8QAGhEAAQUBAAAAAAAAAAAAAAAAAAEDETJREv/aAAgBAgEBPwDpYqSmDtGyV0//xAAdEQACAQQDAAAAAAAAAAAAAAABAgADERIhMkFR/9oACAEDAQE/AFVchk+u4Rs2bUpc6ksPJ//Z');
+        background-size: cover;"
+      >
+        <Image
+          class="hero__image hero__image--desktop"
+          src={photos.HeroDesktop}
+          alt=""
+          loading="eager"
+          decoding="async"
+          style="opacity: 0; object-fit: cover;"
+          onload="this.parentElement.style.backgroundImage = 'none'; this.style.opacity = 1;"
+        />
+      </div>
+    </div>
+    <div class="hero__text-container">
+      <h2 class="hero__heading" set:html={d.hero.heading} />
+      <p class="hero__description" set:html={d.hero.description}></p>
+      <div class="hero__links">
+        <a
+          href={`#${translatedSections.subscription}`}
+          class="hero__link hero__link--primary">
+          {d.hero.sign_up_for_free}
+        </a>
+        <a
+          href={links.login}
+          class="hero__link hero__link--secondary">
+          {d.hero.log_in}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] .hero {
+    background-color: var(--clr-black);
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: var(--max-width-section);
+    margin: auto;
+  }
+
+  .hero__image--mobile {
+    transition: opacity 500ms ease;
+  }
+
+  .hero__image-container--mobile.loaded > .hero__image--mobile {
+    opacity: 1;
+  }
+
+  .hero__image-container--desktop {
+    display: none;
+    height: 100%;
+  }
+
+  .hero__image--desktop {
+    transition: opacity 500ms ease;
+  }
+
+  .hero__text-container {
+    padding: var(--spacing-vertical) 3.2rem;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background-color: var(--clr-grey-smoke);
+  }
+
+  .hero__text-container::before {
+    content: "";
+    width: 100%;
+    position: absolute;
+    height: var(--spacing-vertical);
+    left: 0;
+    top: 0;
+    transform: translateY(-100%);
+    background: var(--gradient-light);
+    z-index: 1;
+  }
+
+  html[data-theme="dark"] .hero__text-container {
+    background-color: var(--clr-black);
+  }
+
+  html[data-theme="dark"] .hero__text-container::before {
+    background: var(--gradient-dark);
+  }
+
+  .hero__heading {
+    font-size: 3.2rem;
+    color: var(--clr-black);
+  }
+
+  :global(.hero__heading span) {
+    color: var(--clr-red-brand-light);
+  }
+
+  html[data-theme="dark"] .hero__heading {
+    color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] :global(.hero__heading span) {
+    color: var(--clr-red-light) !important;
+  }
+
+  .hero__description {
+    line-height: 150%;
+    font-size: 2rem;
+    margin-top: 3.2rem;
+  }
+
+  .hero__description {
+    color: var(--clr-black);
+  }
+
+  html[data-theme="dark"] .hero__description {
+    color: var(--clr-grey-smoke);
+  }
+
+  .hero__links {
+    display: flex;
+    width: 100%;
+    gap: 0.8rem;
+    margin-top: 4.8rem;
+    flex-wrap: wrap;
+  }
+
+  .hero__link {
+    font-size: 2rem;
+    font-weight: 700;
+    flex: 1;
+    text-align: center;
+    padding: 2.4rem 1.5rem;
+    border-radius: 0.4rem;
+    min-width: fit-content;
+    transition: background-color 150ms ease-in-out;
+  }
+
+  .hero__link--primary {
+    background-color: var(--clr-red-brand-light);
+    color: var(--clr-grey-smoke);
+  }
+
+  .hero__link--primary:hover {
+    background-color: var(--clr-red-dark);
+  }
+
+  html[data-theme="dark"] .hero__link--primary {
+    background-color: var(--clr-red-brand-dark-accent);
+    color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] .hero__link--primary:hover {
+    background-color: var(--clr-red-brand-dark);
+  }
+
+  .hero__link--secondary {
+    background-color: var(--clr-white);
+    color: var(--clr-red-brand-light);
+  }
+
+  .hero__link--secondary:hover {
+    background-color: var(--clr-grey-smoke);
+  }
+
+  html[data-theme="dark"] .hero__link--secondary {
+    background-color: var(--clr-black);
+    color: var(--clr-red-light);
+  }
+
+  html[data-theme="dark"] .hero__link--secondary:hover {
+    background-color: var(--clr-grey-charcoal);
+  }
+
+  /* min-width: 830px */
+  @media (min-width: 51.875em) {
+    .hero__content {
+      flex-direction: row-reverse;
+    }
+
+    .hero__content > * {
+      min-width: 50%;
+    }
+
+    .hero__text-container {
+      padding-top: var(--spacing-vertical);
+    }
+
+    .hero__text-container::before {
+      display: none;
+    }
+
+    .hero__image-container--mobile {
+      display: none;
+    }
+
+    .hero__image-container--desktop {
+      display: block;
+    }
+  }
+</style>

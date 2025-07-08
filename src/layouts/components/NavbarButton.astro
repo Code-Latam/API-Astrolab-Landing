@@ -1,0 +1,139 @@
+---
+interface Props {
+  href?: string;
+  id?: string;
+  size?: string;
+  title?: string;
+  variant?: string;
+  class?: string;
+}
+
+const { href, id, size = "md", title, variant = "primary", class: className } = Astro.props
+---
+{
+  href
+  ? (
+      <a
+        href={href}
+        id={id}
+        class={`navbar-button navbar-button--${variant} navbar-button--${size} ${className || ""}`}
+        title={title}
+        >
+          <slot />
+      </a>
+    )
+  : (
+      <button
+        id={id}
+        class={`navbar-button navbar-button--${variant} navbar-button--${size} ${className || ""}`}
+        title={title}
+        >
+        <slot />
+      </button>
+    )
+}
+
+<style is:global>
+  .navbar-button,
+  a.navbar-button,
+  a.navbar-button:focus-visible {
+    display: inline-flex;
+    height: 4rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.8rem;
+    font-weight: 700;
+    transition: background-color 150ms ease-in-out, outline-color 150ms ease-in-out;
+    outline-color: transparent;
+    outline-width: 4px;
+    outline-style: solid;
+    outline-offset: -2px;
+  }
+
+  .navbar-button--primary,
+  a.navbar-button--primary,
+  a.navbar-button--primary:visited {
+    background-color: var(--clr-red-brand-light);
+    color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] .navbar-button--primary,
+  html[data-theme="dark"] a.navbar-button--primary,
+  html[data-theme="dark"] a.navbar-button--primary:visited {
+    background-color: var(--clr-red-brand-dark-accent);
+    color: var(--clr-grey-smoke);
+  }
+
+  .navbar-button--primary:hover,
+  a.navbar-button--primary:hover,
+  a.navbar-button--primary:active,
+  a.navbar-button--primary:focus-visible
+  .navbar-button--primary:focus-visible {
+    background-color: var(--clr-red-dark);
+  }
+
+  .navbar-button--primary:focus-visible,
+  a.navbar-button--primary:focus-visible {
+    outline-color: var(--clr-red-medium);
+  }
+
+  html[data-theme="dark"] .navbar-button--primary:hover,
+  html[data-theme="dark"] a.navbar-button--primary:hover,
+  html[data-theme="dark"] a.navbar-button--primary:active,
+  html[data-theme="dark"] a.navbar-button--primary:focus-visible,
+  html[data-theme="dark"] .navbar-button--primary:focus-visible {
+    background-color: var(--clr-red-brand-dark);
+  }
+
+  html[data-theme="dark"] .navbar-button--primary:focus-visible {
+    outline-color: var(--clr-red-smoke);
+  }
+
+  .navbar-button--secondary,
+  a.navbar-button--secondary,
+  a.navbar-button--secondary:visited {
+    background-color: var(--clr-grey-smoke);
+    color: var(--clr-black);
+  }
+
+  .navbar-button--secondary:hover,
+  a.navbar-button--secondary:hover,
+  a.navbar-button--secondary:active,
+  a.navbar-button--secondary:focus-visible,
+  .navbar-button--secondary:focus-visible {
+    background-color: var(--clr-grey-accent);
+  }
+
+  .navbar-button--secondary:focus-visible,
+  a.navbar-button--secondary:focus-visible {
+    outline-color: var(--clr-grey-charcoal);
+  }
+
+  html[data-theme="dark"] .navbar-button--secondary,
+  html[data-theme="dark"] a.navbar-button--secondary,
+  html[data-theme="dark"] a.navbar-button--secondary:visited {
+    background-color: var(--clr-grey-graphite);
+    color: var(--clr-grey-smoke);
+  }
+
+  html[data-theme="dark"] .navbar-button--secondary:hover,
+  html[data-theme="dark"] a.navbar-button--secondary:hover,
+  html[data-theme="dark"] a.navbar-button--secondary:active,
+  html[data-theme="dark"] a.navbar-button--secondary:focus-visible,
+  html[data-theme="dark"] .navbar-button--secondary:focus-visible {
+    background-color:var(--clr-grey-charcoal);
+  }
+
+  html[data-theme="dark"] .navbar-button--secondary:focus-visible,
+  html[data-theme="dark"] a.navbar-button--secondary:focus-visible {
+    outline-color: var(--clr-grey-smoke);
+  }
+
+  .navbar-button--sm {
+    padding: 0 1rem;
+  }
+
+  .navbar-button--md {
+    padding: 0 1.6rem;
+  }
+</style>

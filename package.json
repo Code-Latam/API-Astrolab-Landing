@@ -1,0 +1,21 @@
+{
+  "name": "red-coupons-landing",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "i18n": "node generate-translations.js"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.4.0",
+    "astro": "^5.7.14"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.0.6"
+  }
+}

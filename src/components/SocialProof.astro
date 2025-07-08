@@ -1,0 +1,186 @@
+---
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+import { Image } from "astro:assets";
+import { photos, logos } from "@/assets";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const d = getDictionary(currentLanguage);
+---
+<section class="social-proof">
+  <section class="testimonials">
+    <span class="testimonials__tag">{d.testimonials.tag}</span>
+    <h2 class="testimonials__heading" set:html={d.testimonials.heading} />
+    <div class="testimonals__list">
+      {
+        d.testimonials.testimonials.map(({ photo, name, profile, comment }) => {
+          const photoSrc = photos[photo];
+
+          return (
+            <article class="testimonial">
+              <header class="testimonial__header">
+                <div class="testimonial__photo">
+                  <Image src={photoSrc} alt="" />
+                </div>
+                <div class="testimonial__user">
+                  <p class="testimonial__user-name">{name}</p>
+                  <p class="testimonial__user-profile">{profile}</p>
+                </div>
+              </header>
+              <p class="testimonial__comment">
+                <span class="testimonial__comment-quotation-mark">“</span>{comment}<span class="testimonial__comment-quotation-mark">”</span>
+              </p>
+            </article>
+          );
+        })
+      }
+    </div>
+  </section>
+  <section class="featured-in">
+    <span class="featured-in__tag">{d.featured_in.tag}</span>
+    <div class="featured-in__logos">
+      {
+        d.featured_in.logos.map(({ logo, title }) => {
+          const Logo = logos[logo];
+
+          return (
+            <span class="featured-in__logo">
+              <Logo aria-label={title} />
+            </span>
+          );
+        })
+      }
+    </div>
+  </section>
+</section>
+
+<style>
+  .social-proof {
+    padding: var(--spacing-vertical) var(--spacing-horizontal);
+    background-color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] .social-proof {
+    background-color: var(--clr-grey-obsidian);
+  }
+
+  .testimonials, .featured-in {
+    max-width: var(--max-width-section);
+    margin: auto;
+  }
+
+  .testimonials__tag, .featured-in__tag {
+    text-transform: uppercase;
+    color: var(--clr-grey-medium);
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  .testimonials__heading {
+    margin-top: 1.6rem;
+    color: var(--clr-red-brand-light);
+  }
+
+  html[data-theme="dark"] .testimonials__heading {
+    color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] :global(.testimonials__heading span) {
+    color: var(--clr-red-light);
+  }
+
+  .testimonals__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25.3rem, 1fr));
+    gap: 3.2rem;
+    align-items: start;
+    margin-top: 4.8rem;
+  }
+
+  .testimonial {
+    background-color: var(--clr-grey-smoke);
+    color: var(--clr-black);
+    border-radius: 0.8rem;
+    padding: 1.6rem;
+  }
+
+  html[data-theme="dark"] .testimonial {
+    background-color: var(--clr-grey-graphite);
+    color: var(--clr-grey-smoke);
+  }
+
+  .testimonial__header {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  .testimonial__photo {
+    height: 5.6rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .testimonial__comment {
+    margin-top: 1.2rem;
+  }
+
+  .testimonial__user {
+    font-weight: 700;
+  }
+
+  .testimonial__user-name {
+    color: var(--clr-red-brand-light);
+  }
+
+  html[data-theme="dark"] .testimonial__user-name {
+    color: var(--clr-red-light);
+  }
+
+  .testimonial__user-profile {
+    color: var(--clr-grey-medium);
+    font-size: 1.4rem;
+  }
+
+  html[data-theme="dark"] .testimonial__user-profile {
+    color: var(--clr-grey-light);
+  }
+
+  .testimonial__comment-quotation-mark {
+    font-weight: 700;
+    color: var(--clr-red-brand-light);
+  }
+
+  html[data-theme="dark"] .testimonial__comment-quotation-mark {
+    color: var(--clr-red-medium);
+  }
+
+  .featured-in {
+    margin-top: var(--spacing-vertical);
+  }
+
+  .featured-in__logos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3.2rem;
+    margin-top: 2.4rem;
+    color: var(--clr-grey-medium);
+    flex-wrap: wrap;
+  }
+
+  .featured-in__logos span {
+    margin: auto;
+  }
+
+  /* min-width: 841px */
+  @media (min-width: 52.5625em) {
+    .featured-in__logos span {
+      margin: 0;
+    }
+  }
+
+  html[data-theme="dark"] .featured-in__logos {
+    color: var(--clr-grey-dark);
+  }
+</style>

@@ -1,0 +1,150 @@
+---
+import StandardLayout from "@/layouts/StandardLayout.astro"
+import { icons } from "@/assets"
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+import { locales } from "@/i18n";
+import { getFormattedDate } from "@/utils";
+import { emails } from "@/constants";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const d = getDictionary(currentLanguage);
+const locale = locales[currentLanguage];
+const lastUpdate = "05/01/2025";
+const effetiveDate = "05/01/2025";
+---
+
+<StandardLayout
+  title={d.seo.terms_of_use.title}
+  description={d.seo.terms_of_use.description}
+  ogDescription={d.seo.terms_of_use.og_description}
+  language={d.seo.language}
+  ogImage={d.seo.og_image}
+  twitterImage={d.seo.twitter_image}
+  >
+  <main>
+    <div class="header">
+      <p class="header__last-update">{d.terms_of_use.last_update} {getFormattedDate(lastUpdate, locale)}</p>
+      <h1 class="header__title">{d.terms_of_use.heading}</h1>
+    </div>
+    <div class="content">
+      <p class="content__effective-date"><b>{d.terms_of_use.effective_date}</b> {getFormattedDate(effetiveDate, locale)}</p>
+      <section class="content__intro" set:html={d.terms_of_use.intro} />
+      {
+        d.terms_of_use.sections.map(section => (
+          <section class="content__section">
+            <h2 class="content__section-title">{section.heading}</h2>
+            <div class="content__section-text" set:html={section.text}/>
+          </section>
+        ))
+      }
+      <section class="content__section">
+        <h2 class="content__section-title">{d.terms_of_use.contact_us.heading}</h2>
+        <div class="content__section-text">
+          <p>{d.terms_of_use.contact_us.intro}</p>
+          <p class="contact-us__email"><icons.Email class="contact-us__email-icon" /> <b>{d.terms_of_use.contact_us.email}</b> <a href={`mailto:${emails.info}`}>{emails.info}</a></p>
+          <p class="contact-us__website"><icons.Website /> <b>{d.terms_of_use.contact_us.website}</b> <a href="https://www.red-coupons.com">https://www.red-coupons.com</a></p>
+        </div>
+      </section>
+    </div>
+  </main>
+</StandardLayout>
+
+<style>
+  main {
+    color: var(--clr-black);
+    background-color: var(--clr-grey-smoke);
+    padding: var(--spacing-vertical) var(--spacing-horizontal);
+  }
+
+  html[data-theme="dark"] main {
+    color: var(--clr-white);
+    background-color: var(--clr-black);
+  }
+
+  .header, .content {
+    max-width: var(--max-width-section);
+    margin: auto;
+  }
+
+  .header__last-update {
+    font-size: 1.4rem;
+    color: var(--clr-grey-dark);
+  }
+
+  html[data-theme="dark"] .header__last-update {
+    color: var(--clr-grey-accent);
+  }
+
+  .header__title {
+    margin-top: 1.2rem;
+    color: var(--clr-red-brand-light);
+  }
+
+  html[data-theme="dark"] .header__title {
+    color: var(--clr-red-medium);
+  }
+
+  .content {
+    margin-top: 4rem;
+  }
+
+  .content__effective-date b {
+    font-weight: 700;
+    color: var(--clr-grey-dark);
+  }
+
+  html[data-theme="dark"] .content__effective-date b {
+    color: var(--clr-grey-accent);
+  }
+
+  .content__intro {
+    margin-top: 3.2rem;
+  }
+
+  :global(.content__intro span) {
+    font-weight: 700;
+    color: var(--clr-red-brand-light);
+  }
+
+  html[data-theme="dark"] :global(.content__intro span) {
+    font-weight: 700;
+    color: var(--clr-red-medium);
+  }
+
+  .content__section {
+    margin-top: 4.8rem;
+  }
+
+  .content__section-title {
+    color: var(--clr-red-brand-light);
+    font-size: 2rem;
+  }
+
+  html[data-theme="dark"] .content__section-title {
+    color: var(--clr-red-medium);
+  }
+
+  .content__section-text {
+    margin-top: 1.6rem;
+    line-height: 150%;
+  }
+
+  :global(.content__section-text ul) {
+    list-style-position: inside;
+  }
+
+  .contact-us__website, .contact-us__email {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+  }
+
+  .contact-us__email {
+    margin-top: 0.25em;
+  }
+
+  .contact-us__email-icon {
+    height: 1.6rem !important;
+    width: 2rem !important;
+  }
+</style>

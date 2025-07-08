@@ -1,0 +1,193 @@
+---
+import { getDictionary, getLangFromUrl, getPathInDefaultLanguage, useTranslatedPath } from "@/i18n/utils";
+import Logo from "@/components/UI/Logo.astro";
+import { logos, icons } from "@/assets";
+import { languages } from "@/i18n";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(currentLanguage);
+const d = getDictionary(currentLanguage);
+const path = getPathInDefaultLanguage(Astro.url.pathname, currentLanguage);
+---
+
+<footer class="footer">
+  <div class="footer__content">
+    <Logo class="footer__logo" />
+    <div class="footer__cols">
+      <div class="footer__col">
+        <ul class="footer__webpages">
+          {
+            d.footer.site_links.map(({link, text}) => (
+              <li><a href={link}>{text}</a></li>
+            ))
+          }
+        </ul>
+        <div class="footer__language-picker-container">
+          <icons.Language class="footer__language-picker-icon" />
+          <label for="footerLanguagePicker" class="footer__language-picker-label visually-hidden">{d.footer.select_language}</label>
+          <select name="lang" id="footerLanguagePicker" class="footer__language-picker">
+            {Object.entries(languages).map(([lang, label]) => (
+              <option value={translatePath(path, lang)} selected={lang === currentLanguage}>{label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <div class="footer__col">
+        <ul class="footer__socials">
+          {
+            d.footer.socials.map(({ link, logo, title }) => {
+              const Logo = logos[logo];
+              return <li><a href={link} title={title}><Logo /></a></li>;
+            })
+          }
+        </ul>
+        <p class="footer__copyright">2025 © Red Coupons.<br/>{d.footer.copyright}</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--clr-black);
+    padding: var(--spacing-vertical) var(--spacing-horizontal);
+  }
+
+  .footer__content {
+    max-width: var(--max-width-section);
+    margin: auto;
+  }
+
+  .footer__logo {
+    --logo-clr-primary: var(--clr-red-brand-dark);
+    --logo-clr-secondary: var(--clr-grey-smoke);
+    display: block;
+    margin: auto;
+  }
+
+  .footer__cols {
+    margin-top: 5.6rem;
+    display: flex;
+    gap: 3.2rem;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  .footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+  }
+
+  .footer__webpages {
+    display: flex;
+    list-style: none;
+    gap: 4rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer__webpages a {
+    color: var(--clr-white);
+    transition: color 150ms ease-in-out;
+  }
+
+  .footer__webpages a:hover {
+    color: var(--clr-red-medium);
+  }
+
+  .footer__language-picker-container {
+    position: relative;
+    align-self: center;
+  }
+
+  .footer__language-picker-icon {
+    color: var(--clr-grey-smoke);
+    position: absolute;
+    top: 50%;
+    left: 0.5em;
+    transform: translateY(-50%);
+  }
+
+  .footer__language-picker {
+    margin-top: 0.8rem;
+    height: 4.8rem;
+    border: none;
+    background-color: var(--clr-grey-graphite);
+    color: inherit;
+    padding: 0.5em;
+    padding-left: 2em;
+    font-size: 1.6rem;
+    border-radius: 0.8rem;
+    color: var(--clr-white);
+    margin: auto;
+  }
+
+  .footer__language-picker:hover,
+  .footer__language-picker:focus-visible {
+    background-color: var(--clr-grey-dark);
+    outline: none;
+  }
+
+  .footer__socials {
+    list-style: none;
+    display: flex;
+    gap: 3.2rem;
+    justify-content: flex-end;
+    margin: auto;
+  }
+
+  .footer__socials a {
+    color: var(--clr-red-brand-dark);
+    transition: color 150ms ease-in-out;
+  }
+
+  .footer__socials a:hover {
+    color: var(--clr-red-light);
+  }
+
+  .footer__copyright {
+    color: var(--clr-grey-light);
+    text-align: center;
+  }
+
+  /* min-width: 800px */
+  @media (min-width: 50em) {
+    .footer__logo {
+      display: inline;
+      margin: auto;
+    }
+
+    .footer__cols {
+      flex-direction: row;
+    }
+
+    .footer__webpages {
+      flex-direction: row;
+    }
+
+    .footer__language-picker-container {
+      align-self: flex-start;
+    }
+
+    .footer__language-picker {
+      align-self: flex-start;
+      margin: 0;
+    }
+
+    .footer__socials {
+      margin: 0;
+    }
+
+    .footer__copyright {
+      text-align: right;
+    }
+  }
+</style>
+
+<script>
+  const languagePicker = document.getElementById("footerLanguagePicker");
+  languagePicker?.addEventListener("change", function(e) {
+    location.href = (e.target as HTMLInputElement).value;
+  })
+</script>

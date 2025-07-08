@@ -1,0 +1,50 @@
+---
+import StandardLayout from "@/layouts/StandardLayout.astro"
+import Hero from "@/components/Hero.astro";
+import ForShoppers from "@/components/ForShoppers.astro";
+import ForBusinesses from "@/components/ForBusinesses.astro";
+import SocialProof from "@/components/SocialProof.astro";
+import Benefits from "@/components/Benefits.astro";
+import Subscription from "@/components/Subscription.astro";
+import FAQ from "@/components/FAQ.astro";
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const d = getDictionary(currentLanguage);
+---
+
+<StandardLayout
+  title={d.seo.index.title}
+  description={d.seo.index.description}
+  ogDescription={d.seo.index.og_description}
+  language={d.seo.language}
+  ogImage={d.seo.og_image}
+  twitterImage={d.seo.twitter_image}
+  >
+  <main>
+    <Hero />
+    <ForShoppers />
+    <ForBusinesses />
+    <SocialProof />
+    <div class="sections-row">
+      <Benefits />
+      <Subscription />
+    </div>
+    <FAQ />
+  </main>
+</StandardLayout>
+
+<style>
+  .sections-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* min-width: 792px */
+  @media (min-width: 49.5em) {
+    .sections-row {
+      flex-direction: row-reverse;
+    }
+  }
+</style>

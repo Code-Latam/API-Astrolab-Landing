@@ -1,0 +1,174 @@
+---
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+import { icons } from "@/assets";
+import { sections } from "@/i18n";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const translatedSections = sections[currentLanguage];
+const d = getDictionary(currentLanguage);
+---
+
+<section class="for-shoppers">
+  <div class="for-shoppers__content">
+    <span class="for-shoppers__tag">{d.for_shoppers.tag}</span>
+    <h2 class="for-shoppers__heading" set:html={d.for_shoppers.heading} />
+    <ul class="for-shoppers__list">
+      {
+        d.for_shoppers.steps.map(({ icon, label }) => {
+          const Icon = icons[icon];
+          return (
+            <li class="for-shoppers__attribute">
+              <span class="for-shoppers__icon">
+                <Icon />
+              </span>
+              <p class="for-shoppers__label">{label}</p>
+            </li>
+          );
+      })
+      }
+    </ul>
+    <a
+      id="shopperSignUp"
+      href={`#${translatedSections.subscription}`}
+      class="for-shoppers__button">
+      {d.for_shoppers.sign_up_button}
+    </a>
+  </div>
+</section>
+
+<style>
+  .for-shoppers {
+    background-color: var(--clr-white);
+    padding: var(--spacing-vertical) var(--spacing-horizontal);
+  }
+
+  html[data-theme="dark"] .for-shoppers {
+    background-color: var(--clr-grey-obsidian);
+  }
+
+  .for-shoppers__content {
+    width: 100%;
+    max-width: var(--max-width-section);
+    margin: auto;
+  }
+
+  .for-shoppers__tag {
+    text-transform: uppercase;
+    color: var(--clr-grey-medium);
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  .for-shoppers__heading {
+    color: var(--clr-red-brand-light);
+    margin-top: 1.6rem;
+  }
+
+  html[data-theme="dark"] .for-shoppers__heading {
+    color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] :global(.for-shoppers__heading span) {
+    color: var(--clr-red-light);
+  }
+
+  .for-shoppers__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(21.6rem, 1fr));
+    gap: 3.2rem;
+    list-style: none;
+    text-align: center;
+    margin-top: 4.8rem;
+  }
+
+  .for-shoppers__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6.4rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin: auto;
+  }
+
+  .for-shoppers__button {
+    display: inline-block;
+    font-weight: 700;
+    padding: 2.4rem 4rem;
+    margin-top: 7.2rem;
+    border-radius: var(--border-radius-small);
+    display: flex;
+    justify-content: center;
+  }
+
+  .for-shoppers__attribute {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  .for-shoppers__label {
+    text-align: left;
+    flex: 1;
+  }
+
+  /* min-width: 800px */
+  @media (min-width: 50em) {
+    .for-shoppers__attribute {
+      flex-direction: column;
+    }
+
+    .for-shoppers__label {
+      text-align: center;
+    }
+
+    .for-shoppers__button {
+      display: inline-block;
+    }
+  }
+
+  .for-shoppers__icon {
+    background-color: var(--clr-red-smoke);
+    color: var(--clr-red-light);
+  }
+
+  .for-shoppers__label {
+    color: var(--clr-black);
+  }
+
+  .for-shoppers__button {
+    background-color: var(--clr-red-brand-light);
+    color: var(--clr-white);
+    transition: background-color 150ms ease-in-out;
+  }
+
+  .for-shoppers__button:hover {
+    background-color: var(--clr-red-dark);
+  }
+
+  html[data-theme="dark"] .for-shoppers__icon {
+    background-color: var(--clr-grey-graphite);
+    color: var(--clr-red-brand-dark);
+  }
+
+  html[data-theme="dark"] .for-shoppers__label {
+    color: var(--clr-grey-smoke);
+  }
+
+  html[data-theme="dark"] .for-shoppers__button {
+    background-color: var(--clr-red-brand-dark-accent);
+    color: var(--clr-grey-smoke);
+  }
+
+  html[data-theme="dark"] .for-shoppers__button:hover {
+    background-color: var(--clr-red-brand-dark);
+  }
+</style>
+
+<script>
+  const shopperSignUpLink = document.getElementById("shopperSignUp");
+  const roleSelect = document.getElementById("role");
+  shopperSignUpLink?.addEventListener("click", () => {
+    (roleSelect as HTMLInputElement).value = "public";
+  });
+</script>

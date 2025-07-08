@@ -1,0 +1,24 @@
+---
+interface Props {
+  htmlFor: string;
+  theme?: "light" | "dark"
+}
+
+const { htmlFor, theme } = Astro.props
+---
+
+<label for={htmlFor} class={theme}>
+  <slot />
+</label>
+
+<style>
+  label, label.light {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--clr-black);
+  }
+
+  html[data-theme="dark"] label, label.dark {
+    color: var(--clr-white);
+  }
+</style>

@@ -1,0 +1,278 @@
+---
+import StandardLayout from "@/layouts/StandardLayout.astro"
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+import FormLabel from "@/components/UI/FormLabel.astro";
+import FormInput from "@/components/UI/FormInput.astro";
+import FormBlock from "@/components/UI/FormBlock.astro";
+import Textarea from "@/components/UI/Textarea.astro";
+import Button from "@/components/UI/Button.astro";
+import Toast from "@/components/UI/Toast.astro";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const d = getDictionary(currentLanguage);
+---
+
+<StandardLayout
+  title={d.seo.contact_us.title}
+  description={d.seo.contact_us.description}
+  ogDescription={d.seo.contact_us.og_description}
+  language={d.seo.language}
+  ogImage={d.seo.og_image}
+  twitterImage={d.seo.twitter_image}
+  >
+  <main class="contact-us">
+    <div class="contact-us__content">
+      <h1 class="contact-us__heading">{d.contact_us.heading}</h1>
+      <p class="contact-us__description" set:html={d.contact_us.description}></p>
+      <form id="contactUsForm" class="contact-us__form">
+        <FormBlock id="emailBlock" errors={d.contact_us.form_email_input.errors}>
+          <FormLabel htmlFor="email" slot="label">
+            {d.contact_us.form_email_input.label}
+          </FormLabel>
+          <FormInput
+            id="email"
+            type="email"
+            name="email"
+            placeholder={d.contact_us.form_email_input.placeholder}
+            required
+            slot="control"
+          />
+        </FormBlock>
+        <FormBlock id="messageBlock" errors={d.contact_us.form_message_textarea.errors}>
+          <FormLabel htmlFor="message" slot="label">
+            {d.contact_us.form_message_textarea.label}
+          </FormLabel>
+          <Textarea
+            id="message"
+            name="message"
+            placeholder={d.contact_us.form_message_textarea.placeholder}
+            resize="vertical"
+            rows="3"
+            required
+            slot="control"
+          />
+        </FormBlock>
+        <input type="hidden" name="language" value={currentLanguage}>
+        <div class="contact-us__form-button-container">
+          <Button id="submitButton" type="submit" fullWidth disabled>
+            <span slot="default">
+              {d.contact_us.form_submit_button.default}
+            </span>
+            <span slot="loading">
+              {d.contact_us.form_submit_button.loading}
+            </span>
+          </Button>
+        </div>
+      </form>
+    </div>
+    <Toast id="contactUsToast" responses={d.contact_us.server_responses} />
+  </main>
+</StandardLayout>
+
+<style>
+  main {
+    color: var(--clr-black);
+    background-color: var(--clr-grey-smoke);
+    padding: var(--spacing-vertical) var(--spacing-horizontal);
+  }
+
+  html[data-theme="dark"] main {
+    color: var(--clr-white);
+    background-color: var(--clr-black);
+  }
+
+  .contact-us__content {
+    max-width: var(--max-width-section);
+    margin: auto;
+  }
+
+  .contact-us__content > * {
+    max-width: 58rem;
+  }
+
+  .contact-us__heading {
+    margin-top: 1.2rem;
+    color: var(--clr-red-brand-light);
+  }
+
+  html[data-theme="dark"] .contact-us__heading {
+    color: var(--clr-red-medium);
+  }
+
+  .contact-us__description {
+    margin-top: 4.8rem;
+  }
+
+  .contact-us__form {
+    margin-top: 3.2rem;
+  }
+
+  .contact-us__form-button-container {
+    margin-top: 3.2rem;
+  }
+</style>
+
+<script>
+  import { endpoints, regex } from "@/constants";
+
+  const MESSAGE_MIN_LENGTH = 10;
+  let timer: NodeJS.Timeout;
+
+  const fields = {
+    email: {
+      touched: false,
+      valid: false
+    },
+    message: {
+      touched: false,
+      valid: false
+    },
+  }
+
+  const form = document.getElementById("contactUsForm") as HTMLFormElement;
+  const email = document.getElementById("email") as HTMLInputElement;
+  const emailBlock = document.getElementById("emailBlock") as HTMLElement;
+  const message = document.getElementById("message") as HTMLTextAreaElement;
+  const messageBlock = document.getElementById("messageBlock") as HTMLElement;
+  const submitButton = document.getElementById("submitButton") as HTMLButtonElement;
+  const contactUsToast = document.getElementById("contactUsToast") as HTMLElement;
+  const contactUsToastCloseButton = contactUsToast.querySelector(".toast__close-button") as HTMLButtonElement;
+
+  type Validator = (value: string) => string;
+
+  function validateEmail(email: string) {
+    const trimmedEmail = email?.trim();
+    if(!trimmedEmail) return "blank"
+
+    const validEmail = regex.EMAIL.test(trimmedEmail);
+    if(!validEmail) return "wrong-format"
+
+    return "";
+  }
+
+  function validateMessage(message: string) {
+    const trimmedMessage = message?.trim();
+    if(!trimmedMessage) return "blank"
+
+    if(trimmedMessage.length < MESSAGE_MIN_LENGTH) return "too-short"
+
+    return "";
+  }
+
+  function updateFeedback(errorMessage: string, formBlock: HTMLElement, fieldName: keyof typeof fields) {
+    if(errorMessage) {
+      (formBlock.querySelectorAll(".form-block__feedback") as NodeListOf<HTMLElement>).forEach((feedback) => {
+        if(feedback.dataset.feedback !== errorMessage) {
+          feedback.style.display = "none"
+        } else {
+          feedback.style.display = "block"
+        }
+      })
+      fields[fieldName].valid = false;
+      submitButton.disabled = true;
+    } else {
+      (formBlock.querySelectorAll(".form-block__feedback") as NodeListOf<HTMLElement>).forEach((feedback) => {
+        feedback.style.display = "none";
+      })
+      fields[fieldName].valid = true;
+      submitButton.disabled = Object.values(fields).some(field => !field.valid);
+    }
+  }
+
+  function handleInput(validateField: Validator, formBlock: HTMLElement) {
+    return function(e: Event) {
+      const field = e.target as HTMLInputElement | HTMLTextAreaElement;
+      const fieldName = field.name as keyof typeof fields;
+
+      const errorMessage = validateField(field.value);
+      if(errorMessage && !fields[fieldName].touched) return;
+      updateFeedback(errorMessage, formBlock, fieldName);
+    }
+  }
+
+  function handleBlur(validateField: Validator, formBlock: HTMLElement) {
+    return function handler(e: Event) {
+      const field = e.target as HTMLInputElement | HTMLTextAreaElement;
+      const fieldName = field.name as keyof typeof fields;
+
+      fields[fieldName].touched = true;
+      const errorMessage = validateField(field.value);
+      updateFeedback(errorMessage, formBlock, fieldName);
+
+      field.removeEventListener("blur", handler);
+    }
+  }
+
+  function openToast(status: number | string) {
+    const errorResponse = +status >= 400;
+    const variant = errorResponse ? "error" : "success";
+    (contactUsToast.querySelectorAll(".toast__message") as NodeListOf<HTMLElement>).forEach(message => {
+      if(message.className === `toast__message toast__message--${status}`) {
+        message.style.display = "block"
+      } else {
+        message.style.display = "none"
+      }
+    })
+    contactUsToastCloseButton.disabled = false;
+    contactUsToast.className = `toast active ${variant}`;
+  }
+
+  function closeToast() {
+    contactUsToastCloseButton.disabled = true;
+    contactUsToast.classList.remove("active");
+    if(+(submitButton.dataset.shouldDisable as string)) {
+      submitButton.disabled = true;
+    } else {
+      submitButton.disabled = false;
+    }
+    submitButton.removeAttribute("should-disable");
+  }
+
+  function resetForm() {
+    form.reset();
+    Object.values(fields).forEach(field => {
+      field.touched = false;
+      field.valid = false;
+    });
+    submitButton.disabled = true;
+  }
+
+  email.addEventListener("input", handleInput(validateEmail, emailBlock));
+  email.addEventListener("blur", handleBlur(validateEmail, emailBlock));
+  message.addEventListener("input", handleInput(validateMessage, messageBlock));
+  message.addEventListener("blur", handleBlur(validateMessage, messageBlock));
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    submitButton.classList.add("loading");
+    submitButton.disabled = true;
+
+    const formData = new FormData(form);
+    const body = Object.fromEntries(formData.entries());
+
+    const { status } = await fetch(endpoints.contactUs, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body)
+    });
+
+    openToast(status);
+    submitButton.classList.remove("loading");
+    if(+status >= 400) {
+      submitButton.setAttribute("data-should-disable", "0");
+    } else {
+      submitButton.setAttribute("data-should-disable", "1");
+      resetForm();
+    }
+
+    timer = setTimeout(closeToast, 5000);
+  })
+
+  contactUsToastCloseButton.addEventListener("click", () => {
+    closeToast();
+    clearTimeout(timer);
+  })
+</script>

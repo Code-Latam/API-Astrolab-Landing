@@ -1,0 +1,178 @@
+---
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+import { icons } from "@/assets";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const d = getDictionary(currentLanguage);
+---
+
+<section class="faq">
+  <div class="faq__content">
+    <span class="faq__tag">{d.faq.tag}</span>
+    <h2 class="faq__heading" set:html={d.faq.heading} />
+    <ul class="faq__accordion" id="faqAccordion">
+      {
+        d.faq.accordion.map(({ question, answer }) => (
+          <li class="faq__accordion-block">
+            <button class="faq__accordion-top">
+              <p class="faq__accordion-question">{question}</p>
+              <span class="faq__accordion-chevron">
+                <icons.Chevron />
+              </span>
+            </button>
+            <div class="faq__accordion-bottom">
+              <div class="faq__accordion-answer">
+                <div set:html={answer} />
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding: var(--spacing-vertical) var(--spacing-horizontal);
+    background-color: var(--clr-white);
+    color: var(--clr-black);
+  }
+
+  html[data-theme="dark"] .faq {
+    background-color: var(--clr-grey-obsidian);
+    color: var(--clr-grey-smoke);
+  }
+
+  .faq__content {
+    max-width: var(--max-width-section);
+    margin: auto;
+  }
+
+  .faq__tag {
+    color: var(--clr-grey-medium);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  .faq__tag + .faq__heading {
+    margin-top: 1.6rem;
+  }
+
+  .faq__heading {
+    color: var(--clr-red-brand-light);
+    font-weight: 700;
+    font-size: 3.2rem;
+  }
+
+  html[data-theme="dark"] .faq__heading {
+    color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] :global(.faq__heading span) {
+    color: var(--clr-red-light);
+  }
+
+  .faq__accordion {
+    margin-top: 4.8rem;
+    list-style: none;
+  }
+
+  .faq__accordion-block {
+    background-color: var(--clr-grey-smoke);
+    border-radius: 0.4rem;
+    overflow: hidden;
+  }
+
+  .faq__accordion-block + .faq__accordion-block {
+    margin-top: 0.8rem;
+  }
+
+  html[data-theme="dark"] .faq__accordion-block {
+    background-color: var(--clr-grey-graphite);
+  }
+
+  .faq__accordion-top {
+    display: flex;
+    align-items: center;
+    padding: 1.6rem;
+    cursor: pointer;
+    width: 100%;
+    background: none;
+    transition: background-color 150ms ease-in-out;
+  }
+
+  .faq__accordion-top:hover {
+    background-color:var(--clr-grey-accent);
+  }
+
+  html[data-theme="dark"] .faq__accordion-top:hover {
+    background-color:var(--clr-grey-charcoal);
+  }
+
+  .faq__accordion-question {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: left;
+    color: var(--clr-black);
+    transition: color 150ms ease-in-out;
+  }
+
+  html[data-theme="dark"] .faq__accordion-question {
+    color: var(--clr-white);
+  }
+
+  .faq__accordion-chevron {
+    margin-left: auto;
+    color: var(--clr-red-medium);
+    transition: transform 150ms ease-in-out;
+  }
+
+  .faq__accordion-top.open > .faq__accordion-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq__accordion-bottom {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms ease-in-out;
+    color: var(--clr-grey-dark);
+  }
+
+  .faq__accordion-answer {
+    overflow: hidden;
+  }
+
+  html[data-theme="dark"] .faq__accordion-answer {
+    color: var(--clr-grey-accent);
+  }
+
+  .faq__accordion-top.open + .faq__accordion-bottom {
+    grid-template-rows: 1fr;
+  }
+
+  .faq__accordion-answer div {
+    padding: 1.6rem;
+    display: block;
+  }
+
+  :global(.faq__accordion-answer ul) {
+    list-style-position: inside;
+    list-style-type: disc;
+  }
+
+  :global(.faq__accordion-answer > div > * + *) {
+    margin-top: 0.5em;
+  }
+
+</style>
+
+<script>
+  const accordion = document.getElementById("faqAccordion");
+  accordion?.addEventListener("click", (e) => {
+    const button = (e.target as HTMLElement).closest(".faq__accordion-top");
+    if(!button) return;
+    button.classList.toggle("open");
+  })
+</script>

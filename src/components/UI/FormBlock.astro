@@ -1,0 +1,50 @@
+---
+type ErrorFeedback = {
+  id: string;
+  message: string;
+}
+
+interface Props {
+  errors?: ErrorFeedback[];
+  id?: string;
+}
+
+const { errors, id } = Astro.props;
+---
+
+<div id={id} class="form-block">
+  <div class="form-block__label">
+    <slot name="label" />
+  </div>
+  <div class="form-block__control">
+    <slot name="control" />
+  </div>
+  {
+    errors?.map(error => (
+      <p class="form-block__feedback" data-feedback={error.id}>
+        {error.message}
+      </p>
+    ))
+  }
+</div>
+
+<style>
+  .form-block__control {
+    margin-top: 0.8rem;
+  }
+
+  .form-block__feedback {
+    margin-top: 0.5em;
+    color: var(--clr-red-dark);
+    font-size: 1.4rem;
+    display: none;
+  }
+
+  html[data-theme="dark"] .form-block__feedback {
+    color: var(--clr-red-medium);
+  }
+
+  :global(.form-block + .form-block) {
+    margin-top: 2rem;
+  }
+</style>

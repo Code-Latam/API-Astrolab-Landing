@@ -1,0 +1,177 @@
+---
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+import { icons } from "@/assets";
+import { sections } from "@/i18n";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const translatedSections = sections[currentLanguage];
+const d = getDictionary(currentLanguage);
+---
+
+<section id={translatedSections.forBusinesses} class="for-businesses">
+  <div class="for-businesses__content">
+    <span class="for-businesses__tag">{d.for_businesses.tag}</span>
+    <h2 class="for-businesses__heading" set:html={d.for_businesses.heading}>
+    </h2>
+    <ul class="for-businesses__list">
+      {
+        d.for_businesses.steps.map(({ icon, label }) => {
+          const Icon = icons[icon];
+          return (
+            <li class="for-businesses__attribute">
+              <span class="for-businesses__icon">
+                <Icon />
+              </span>
+              <p class="for-businesses__label">{label}</p>
+            </li>
+          );
+        })
+      }
+    </ul>
+    <a
+      id="businessSignUp"
+      href={`#${translatedSections.subscription}`}
+      class="for-businesses__button">
+      {d.for_businesses.sign_up_button}
+    </a>
+  </div>
+</section>
+
+<style>
+.for-businesses {
+  background-color: var(--clr-red-medium);
+  padding: var(--spacing-vertical) var(--spacing-horizontal);
+}
+
+html[data-theme="dark"] .for-businesses {
+  background-color: var(--clr-grey-graphite);
+}
+
+.for-businesses__content {
+  width: 100%;
+  max-width: var(--max-width-section);
+  margin: auto;
+}
+
+.for-businesses__tag {
+  color: var(--clr-red-smoke);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+html[data-theme="dark"] .for-businesses__tag {
+  color: var(--clr-grey-light);
+}
+
+.for-businesses__heading {
+  color: var(--clr-white);
+  margin-top: 1.6rem;
+}
+
+html[data-theme="dark"] .for-businesses__heading {
+  color: var(--clr-white);
+}
+
+html[data-theme="dark"] :global(.for-businesses__heading span) {
+  color: var(--clr-red-light);
+}
+
+.for-businesses__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(21.6rem, 1fr));
+  gap: 3.2rem;
+  list-style: none;
+  text-align: center;
+  margin-top: 4.8rem;
+}
+
+.for-businesses__attribute {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.for-businesses__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6.4rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.for-businesses__button {
+  display: flex;
+  font-weight: 700;
+  padding: 2.4rem 4.6rem;
+  margin-top: 7.2rem;
+  border-radius: var(--border-radius-small);
+  justify-content: center;
+  transition: background-color 150ms ease-in-out;
+}
+
+.for-businesses__label {
+  text-align: left;
+  flex: 1;
+}
+
+  /* min-width: 800px */
+  @media (min-width: 50em) {
+    .for-businesses__attribute {
+      flex-direction: column;
+    }
+
+    .for-businesses__label {
+      text-align: center;
+    }
+
+    .for-businesses__button {
+      display: inline-block;
+    }
+  }
+
+.for-businesses__icon {
+  background-color: var(--clr-red-brand-light);
+  color: var(--clr-red-light);
+}
+
+.for-businesses__label {
+  color: var(--clr-white);
+}
+
+.for-businesses__button {
+  background-color: var(--clr-white);
+  color: var(--clr-red-brand-light);
+}
+
+.for-businesses__button:hover {
+  background-color: var(--clr-red-smoke);
+}
+
+html[data-theme="dark"] .for-businesses__icon {
+  background-color: var(--clr-grey-charcoal);
+  color: var(--clr-red-brand-dark);
+}
+
+html[data-theme="dark"] .for-businesses__label {
+  color: var(--clr-grey-smoke);
+}
+
+html[data-theme="dark"] .for-businesses__button {
+  background-color: var(--clr-red-smoke);
+  color: var(--clr-black);
+}
+html[data-theme="dark"] .for-businesses__button:hover {
+  background-color: var(--clr-white);
+}
+</style>
+
+<script>
+  const businessSignUpLink = document.getElementById("businessSignUp");
+  const roleSelect = document.getElementById("role");
+  businessSignUpLink?.addEventListener("click", () => {
+    (roleSelect as HTMLInputElement).value = "both";
+  });
+</script>

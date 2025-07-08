@@ -1,0 +1,40 @@
+{
+  "routes": [
+    {
+      "route": "/en",
+      "methods": ["GET"],
+      "rewrite": "/en/index.html"
+    },
+    {
+      "route": "/en/index.html",
+      "methods": ["GET"],
+      "rewrite": "/en/index.html"
+    },
+    {
+      "route": "/en/contact-us",
+      "methods": ["GET"],
+      "rewrite": "/en/contact-us/index.html"
+    },
+    {
+      "route": "/en/privacy-policy",
+      "methods": ["GET"],
+      "rewrite": "/en/privacy-policy/index.html"
+    },
+    {
+      "route": "/en/terms-of-use",
+      "methods": ["GET"],
+      "rewrite": "/en/terms-of-use/index.html"
+    },
+    {
+      "route": "/en/*",
+      "methods": ["GET"],
+      "rewrite": "/en/404/index.html"
+    }
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html",
+      "statusCode": 404
+    }
+  }
+}

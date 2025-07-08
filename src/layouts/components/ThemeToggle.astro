@@ -1,0 +1,53 @@
+---
+import NavbarButton from "@/layouts/components/NavbarButton.astro";
+import { icons } from "@/assets";
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const d = getDictionary(lang);
+---
+
+<NavbarButton id="themeToggle" variant="secondary" size="sm" title={d.navbar.theme}>
+  <icons.Moon />
+  <icons.Sun />
+</NavbarButton>
+
+<style>
+  :global(html[data-theme="light"] #darkThemeIcon) {
+    display: none;
+  }
+
+  :global(html[data-theme="dark"] #lightThemeIcon) {
+    display: none;
+  }
+</style>
+
+<script is:inline>
+  const setCurrentTheme = (theme) => {
+    document.documentElement.setAttribute("data-theme", theme);
+    window.localStorage.setItem("theme", theme);
+    document.querySelector("meta[name='theme-color']").setAttribute("content", `var(--clr-bg-${theme})`)
+  };
+  const getCurrentTheme = () => document.documentElement.getAttribute("data-theme") || "light";
+
+  const theme = (() => {
+    const localStorageTheme = localStorage?.getItem("theme") ?? "";
+    if (["dark", "light"].includes(localStorageTheme)) {
+      return localStorageTheme;
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  setCurrentTheme(theme);
+
+  const handleToggleClick = () => {
+    const currentTheme = getCurrentTheme();
+    const newTheme = currentTheme === "light" ? "dark" : "light";
+    setCurrentTheme(newTheme);
+  }
+
+  document.getElementById("themeToggle")?.addEventListener("click", handleToggleClick);
+</script>

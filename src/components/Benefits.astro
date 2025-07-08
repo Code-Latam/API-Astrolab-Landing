@@ -1,0 +1,144 @@
+---
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const d = getDictionary(currentLanguage);
+---
+
+<section class="benefits">
+  <div class="split-layout-col">
+    <div class="benefits__content">
+      <span class="benefits__tag">{d.benefits.tag}</span>
+      <h2 class="benefits__heading" set:html={d.benefits.heading}>
+      </h2>
+      <section class="benefits__subsection">
+        <h3 class="benefits__subheading">{d.benefits.shopper_benefits.subheading}</h3>
+        <ul class="benefits__list">
+          {
+            d.benefits.shopper_benefits.benefits.map(benefit => (
+              <li class="benefit">{benefit}</li>
+            ))
+          }
+        </ul>
+      </section>
+      <section class="benefits__subsection">
+        <h3 class="benefits__subheading">{d.benefits.bussiness_benefits.subheading}</h3>
+        <ul class="benefits__list">
+          {
+            d.benefits.bussiness_benefits.benefits.map(benefit => (
+              <li class="benefit">{benefit}</li>
+            ))
+          }
+        </ul>
+      </section>
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits {
+    background-color: var(--clr-red-medium);
+    padding: var(--spacing-vertical) var(--spacing-horizontal);
+    color: var(--clr-grey-smoke);
+    flex: 1;
+  }
+
+  html[data-theme="dark"] .benefits {
+    background-color: var(--clr-grey-graphite);
+  }
+
+  .benefits__tag {
+    color: var(--clr-red-smoke);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  html[data-theme="dark"] .benefits__tag {
+    color: var(--clr-grey-light);
+  }
+
+  .benefits__heading {
+    margin-top: 1.6rem;
+    color: var(--clr-white);
+    font-size: 2.4rem;
+  }
+
+  html[data-theme="dark"] .benefits__heading {
+    color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] :global(.benefits__heading span) {
+    color: var(--clr-red-light);
+  }
+
+  /* min-width: 792px */
+  @media (min-width: 49.5em) {
+    .split-layout-col {
+      max-width: calc(var(--max-width-section) / 2 - var(--spacing-horizontal));
+      margin-right: auto;
+    }
+
+    .benefits__content {
+      max-width: var(--max-width-subsection);
+      margin-left: auto;
+    }
+
+    .benefits__tag {
+      display: none;
+    }
+
+    .benefits__heading {
+      margin-top: 0;
+    }
+  }
+
+  .benefits__subsection {
+    margin-top: 4rem;
+  }
+
+  .benefits__subsection + .benefits__subsection {
+    margin-top: 3.2rem;
+  }
+
+  .benefits__subheading {
+    font-size: 1.6rem;
+  }
+
+  html[data-theme="dark"] .benefits__subheading {
+    color: var(--clr-red-light);
+  }
+
+  .benefits__list {
+    margin-top: 1.2rem;
+  }
+
+  .benefit {
+    list-style: none;
+    position: relative;
+    padding-left: 1.375em; /* 16px + 6px */
+    color: var(--clr-grey-smoke);
+  }
+
+  .benefit + .benefit {
+    margin-top: 0.8rem;
+  }
+
+  .benefit::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    mask: url("../assets/icons/checkmark-circle.svg") no-repeat center;
+    -webkit-mask: url("../assets/icons/checkmark-circle.svg") no-repeat center;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    background-color: currentColor;
+  }
+
+  html[data-theme="dark"] .benefit::before {
+    background-color: var(--clr-red-medium);
+  }
+</style>

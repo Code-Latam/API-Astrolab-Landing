@@ -1,0 +1,173 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	ogDescription: string;
+	ogImage: string;
+	twitterImage: string;
+	language: string;
+}
+
+const {
+	title,
+	description,
+	ogImage,
+	twitterImage,
+	language,
+	ogDescription
+	} = Astro.props;
+---
+<!doctype html>
+<html lang={language}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color" content="var(--clr-bg-light)" />
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="Red Coupons" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={title} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={ogDescription} />
+    <meta property="twitter:image" content={twitterImage} />
+		<title>{title}</title>
+		<style is:global>
+			:root {
+				--clr-white: #FFFFFF;
+				--clr-grey-smoke: #F5F5F5;
+				--clr-grey-accent: #CCCCCC;
+				--clr-grey-light: #9F9F9F;
+				--clr-grey-medium: #767676;
+				--clr-grey-dark: #5B5B5B;
+				--clr-grey-charcoal: #3B3B3B;
+				--clr-grey-graphite: #2F2F2F;
+				--clr-grey-obsidian: #202020;
+				--clr-black: #121212;
+				--clr-red-smoke: #F9C7C7;
+				--clr-red-light: #FA7A7B;
+				--clr-red-medium: #F94F4F;
+				--clr-red-brand-light: #EE2C26;
+				--clr-red-brand-dark: #dc3d38;
+				--clr-red-dark: #bd150f;
+				--clr-red-brand-dark-accent: #bd2d28;
+				--clr-green-success: #26a963;
+				--clr-bg-light: var(--clr-white);
+				--clr-bg-dark: var(--clr-black);
+				--clr-overlay-flat-dark: rgba(0, 0, 0, 0.5);
+				--gradient-light: linear-gradient(180deg, rgba(240, 240, 240, 0.00), #F0F0F0);
+				--gradient-dark: linear-gradient(180deg, rgba(18, 18, 18, 0.00) 0%, #121212);
+				--max-width-section: 98rem;
+				--max-width-subsection: 38.5rem;
+				--spacing-vertical: 9.6rem;
+				--spacing-horizontal: 3.6rem;
+				--border-radius-small: 0.4rem;
+				--border-radius-medium: 0.8rem;
+			}
+
+			*, *::before, *::after {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: sans-serif;
+				scroll-behavior: smooth;
+			}
+
+			/* Makes 1rem = 10px */
+			/* 62.5*16px(base) = 10px */
+			html {
+				font-size: 62.5%;
+				height: 100%;
+			}
+
+			body {
+				font-size: 1.6rem;
+				position: relative;
+				min-height: 100%;
+				height: fit-content;
+				background-color: var(--clr-white);
+				display: flex;
+				flex-direction: column;
+			}
+
+			html[data-theme="dark"] body {
+				background-color: var(--clr-black);
+			}
+
+			main {
+				flex: 1;
+			}
+
+			button {
+				border: none;
+				cursor: pointer;
+				font-size: inherit;
+				font-weight: 700;
+				color: inherit;
+			}
+
+			a,
+			a:visited {
+				text-decoration: none;
+				color: var(--clr-red-brand-light);
+				font-weight: 700;
+				transition: color 200ms ease-in-out;
+			}
+
+			html[data-theme="dark"] a,
+			html[data-theme="dark"] a:visited {
+				color: var(--clr-red-medium);
+			}
+
+			a:hover,
+			a:active,
+			a:focus-visible {
+				color: var(--clr-red-dark);
+			}
+
+			html[data-theme="dark"] a:hover,
+			html[data-theme="dark"] a:active,
+			html[data-theme="dark"] a:focus-visible {
+				color: var(--clr-red-light);
+			}
+
+			a:focus-visible {
+				outline: none;
+			}
+
+			img {
+				display: block;
+				object-fit: cover;
+				width: 100%;
+				height: 100%;
+			}
+
+			.visually-hidden {
+				clip: rect(0 0 0 0);
+				clip-path: inset(50%);
+				height: 1px;
+				overflow: hidden;
+				position: absolute;
+				white-space: nowrap;
+				width: 1px;
+			}
+		</style>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

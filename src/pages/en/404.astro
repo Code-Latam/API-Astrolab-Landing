@@ -1,0 +1,131 @@
+---
+import { icons } from "@/assets";
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const d = getDictionary(currentLanguage);
+---
+
+<BaseLayout
+  title={d.seo.not_found.title}
+  description={d.seo.not_found.description}
+  ogDescription={d.seo.not_found.og_description}
+  language={d.seo.language}
+  ogImage={d.seo.og_image}
+  twitterImage={d.seo.twitter_image}
+  >
+  <main>
+    <h1 class="visually-hidden">{d.not_found.seo_title}</h1>
+    <div class="not-found__icon-container">
+      <icons.Coupon class="not-found__icon" aria-hidden="true" />
+    </div>
+    <div class="not-found__text-container">
+      <p class="not-found__info">{d.not_found.info}</p>
+      <p class="not-found__options" set:html={d.not_found.options} />
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+	main {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+    flex-direction: column;
+	}
+
+  body {
+    color: var(--clr-grey-charcoal);
+  }
+
+  html[data-theme="dark"] body {
+    color: var(--clr-grey-smoke);
+  }
+
+  .not-found__icon-container {
+    height: 16rem;
+    width: 16rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .not-found__icon {
+    transform: scale(3) rotate(-45deg);
+    color: var(--clr-red-brand-dark);
+  }
+
+  .not-found__text-container {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .not-found__info {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  html[data-theme="dark"] .not-found__info {
+    color: var(--clr-grey-smoke);
+  }
+
+  .not-found__options {
+    margin-top: 0.75em;
+    color: var(--clr-black);
+  }
+
+  html[data-theme="dark"] .not-found__options {
+    color: var(--clr-grey-accent);
+  }
+
+  :global(.not-found__options a),
+  :global(.not-found__options a:visited) {
+    color: var(--clr-red-brand-light);
+    font-weight: 700;
+    transition: color 200ms ease-in-out;
+  }
+
+  html[data-theme="dark"] :global(.not-found__options a),
+  html[data-theme="dark"] :global(.not-found__options a:visited) {
+    color: var(--clr-red-light);
+  }
+
+  :global(.not-found__options a:hover),
+  :global(.not-found__options a:active),
+  :global(.not-found__options a:focus-visible) {
+    color: var(--clr-red-dark);
+  }
+
+  html[data-theme="dark"] :global(.not-found__options a:hover),
+  html[data-theme="dark"] :global(.not-found__options a:active),
+  html[data-theme="dark"] :global(.not-found__options a:focus-visible) {
+    color: var(--clr-red-smoke);
+  }
+
+  :global(.not-found__options a:focus-visible) {
+    outline: none;
+  }
+</style>
+
+<script is:inline>
+  const setCurrentTheme = (theme) => {
+    document.documentElement.setAttribute("data-theme", theme);
+    window.localStorage.setItem("theme", theme);
+    document.querySelector("meta[name='theme-color']").setAttribute("content", `var(--clr-bg-${theme})`)
+  };
+  const getCurrentTheme = () => document.documentElement.getAttribute("data-theme") || "light";
+
+  const theme = (() => {
+    const localStorageTheme = localStorage?.getItem("theme") ?? "";
+    if (["dark", "light"].includes(localStorageTheme)) {
+      return localStorageTheme;
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  setCurrentTheme(theme);
+</script>

@@ -1,0 +1,367 @@
+---
+import { icons } from "@/assets";
+import { links } from "@/constants";
+import { languages, sections } from "@/i18n";
+import { getDictionary, getLangFromUrl, getPathInDefaultLanguage, useTranslatedPath } from "@/i18n/utils";
+
+interface Props {
+  isHomePage: boolean;
+}
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const translatedSections = sections[currentLanguage as keyof typeof sections];
+const translatePath = useTranslatedPath(currentLanguage);
+const d = getDictionary(currentLanguage);
+const path = getPathInDefaultLanguage(Astro.url.pathname, currentLanguage);
+const { isHomePage } = Astro.props;
+---
+
+<Fragment>
+  <button id="navbarMenuButton" class="navbar-menu__toggle" title={d.navbar.toggle_menu}>
+    <icons.HamburgerMenu />
+  </button>
+  <nav class="navbar-menu__menu">
+    <ul id="navbarMenuOptions" class="navbar-menu__options">
+      {isHomePage && (<>
+        <li>
+          <a
+            href={`#${translatedSections.forBusinesses}`}
+            class="navbar-menu__option actionable">
+            {d.navbar.for_businesses}
+          </a>
+        </li>
+        <li>
+          <a
+            href={`#${translatedSections.subscription}`}
+            class="navbar-menu__option actionable">
+            {d.navbar.sign_up}
+          </a>
+        </li>
+      </>)}
+      <li>
+        <a
+          href={links.login}
+          class="navbar-menu__option actionable">
+          {d.navbar.log_in}
+        </a>
+      </li>
+      <li>
+        <button id="langMenu" class="navbar-menu__option navbar-menu__option--submenu">
+          {d.navbar.language}
+          <span class="navbar-menu__option-chevron">
+            <icons.Chevron />
+          </span>
+        </button>
+        <div class="navbar-menu__suboptions">
+          <ul>
+            {Object.entries(languages).map(([lang, label]) => (
+              <li>
+                <a
+                  href={translatePath(path, lang)}
+                  class="navbar-menu__suboption language-option actionable">
+                    {currentLanguage == lang && <icons.Checkmark class="language-option__checkmark"/>}
+                    <span class="language-option__label">{label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+      </div>
+      </li>
+      <li>
+        <button id="themeMenu" class="navbar-menu__option navbar-menu__option--submenu">
+          {d.navbar.theme}
+          <span class="navbar-menu__option-chevron">
+            <icons.Chevron />
+          </span>
+        </button>
+        <div class="navbar-menu__suboptions">
+          <ul>
+            <li>
+              <button
+                class="navbar-menu__suboption theme-option theme-option--light actionable"
+                data-theme-option="light">
+                  <icons.Checkmark class="theme-option__checkmark"/>
+                  <span class="theme-option__label">{d.navbar.light_theme}</span>
+              </button>
+            </li>
+            <li>
+              <button
+                class="navbar-menu__suboption theme-option theme-option--dark actionable"
+                data-theme-option="dark">
+                  <icons.Checkmark class="theme-option__checkmark"/>
+                  <span class="theme-option__label">{d.navbar.dark_theme}</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <div id="navbarOverlay" class="navbar__overlay"></div>
+</Fragment>
+
+<style>
+  .navbar-menu__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    color: var(--clr-red-brand-light);
+    transition: color 150ms ease-in-out;
+  }
+
+  html[data-theme="dark"] .navbar-menu__toggle {
+    color: var(--clr-red-brand-dark);
+  }
+
+  .navbar-menu__toggle:hover,
+  html[data-theme="dark"] .navbar-menu__toggle:hover {
+    color: var(--clr-red-medium);
+  }
+
+  .navbar-menu__toggle:focus-visible {
+    outline: var(--clr-red-medium) solid 3.5px;
+    border-radius: 50%;
+    outline-offset: 0.5em;
+  }
+
+  .navbar-menu__toggle :global(#top),
+  .navbar-menu__toggle :global(#bottom) {
+    transition: transform 150ms ease-in-out;
+  }
+
+  .navbar-menu__toggle :global(#middle) {
+    transition: opacity 150ms ease-in-out, visibility 150ms ease-in-out;
+  }
+
+  .navbar-menu__toggle.open :global(#middle) {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .navbar-menu__toggle.open :global(#top) {
+    transform: rotate(45deg) translate(5px, -4.5px);
+  }
+
+  .navbar-menu__toggle.open :global(#bottom) {
+    transform: rotate(-45deg) translate(-12px,-2.5px);
+  }
+
+  .navbar-menu__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--clr-white);
+    width: 100%;
+    display: grid;
+    grid-template-rows: 0fr;
+    z-index: 5000;
+    transition: grid-template-rows 300ms ease-in-out;
+    visibility: hidden;
+  }
+
+  .navbar-menu__menu ul {
+    overflow: hidden;
+  }
+
+  .navbar-menu__toggle.open + .navbar-menu__menu {
+    grid-template-rows: 1fr;
+    visibility: visible;
+  }
+
+  html[data-theme="dark"] .navbar-menu__menu {
+    background-color: var(--clr-grey-obsidian);
+  }
+
+  .navbar-menu__menu ul {
+    list-style: none;
+  }
+
+  .navbar__overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--clr-overlay-flat-dark);
+    width: 100%;
+    height: 100vh;
+    display: none;
+    z-index: 1;
+  }
+
+  .navbar-menu__toggle.open ~ .navbar__overlay {
+    display: block;
+  }
+
+  .navbar-menu__option {
+    display: block;
+    padding: 1em var(--spacing-horizontal);
+    cursor: pointer;
+    transition: color 150ms ease-in-out;
+  }
+
+  a.navbar-menu__option,
+  a.navbar-menu__option:visited,
+  a.navbar-menu__suboption,
+  a.navbar-menu__suboption:visited {
+    color: inherit;
+  }
+
+  a.navbar-menu__option:hover,
+  .navbar-menu__option:hover,
+  a.navbar-menu__suboption:hover,
+  .navbar-menu__suboption:hover,
+  a.navbar-menu__option:focus-visible,
+  .navbar-menu__option:focus-visible,
+  a.navbar-menu__suboption:focus-visible,
+  .navbar-menu__suboption:focus-visible {
+    color: var(--clr-red-medium);
+    outline: none;
+  }
+
+  .navbar-menu__suboption {
+    display: block;
+    background: none;
+    text-align: left;
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+    transition: color 150ms ease-in-out;
+  }
+
+  .navbar-menu__option--submenu {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: none;
+  }
+
+  .navbar-menu__option-chevron {
+    margin-left: auto;
+    transition: transform 150ms ease-in-out;
+  }
+
+  .navbar-menu__option--submenu.open > .navbar-menu__option-chevron {
+    transform: rotate(180deg);
+  }
+
+  .navbar-menu__suboptions {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms ease-in-out, visibility 200ms ease-in-out;
+    visibility: hidden;
+  }
+
+  .navbar-menu__suboptions div {
+    overflow: hidden;
+  }
+
+  .navbar-menu__option--submenu.open + .navbar-menu__suboptions {
+    grid-template-rows: 1fr;
+    visibility: visible;
+  }
+
+  .theme-option, .language-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .language-option__checkmark,
+  .theme-option__checkmark,
+  .language-option__label,
+  .theme-option__label {
+    pointer-events: none;
+  }
+
+  .language-option__checkmark,
+  .language-option__checkmark + .language-option__label {
+    color: var(--clr-red-brand-light);
+  }
+
+  html[data-theme="dark"] .language-option__checkmark,
+  html[data-theme="dark"] .language-option__checkmark + .language-option__label {
+    color: var(--clr-red-medium);
+  }
+
+  html[data-theme="light"] .theme-option--light {
+    color: var(--clr-red-brand-light);
+  }
+
+  html[data-theme="dark"] .theme-option--dark {
+    color: var(--clr-red-medium);
+  }
+
+  html[data-theme="dark"] .theme-option--light > .theme-option__checkmark,
+  html[data-theme="light"] .theme-option--dark > .theme-option__checkmark {
+    display: none;
+  }
+
+  .theme-option {
+    padding: 1em calc(var(--spacing-horizontal) + 0.75em);
+  }
+
+  html[data-theme="dark"] .theme-option--light,
+  html[data-theme="light"] .theme-option--dark {
+    padding-left: calc(var(--spacing-horizontal) + 2.25em);
+  }
+
+  .language-option {
+    padding: 1em calc(var(--spacing-horizontal) + 0.75em);
+  }
+
+  .language-option .language-option__label {
+    padding-left: 1.5em;
+  }
+
+  .language-option__checkmark + .language-option__label {
+    padding-left: 0;
+  }
+
+  /* min-width: 750px */
+  @media(min-width: 46.875em) {
+    .navbar-menu__toggle,
+    .navbar-menu__menu,
+    .navbar-menu__toggle.open ~ .navbar__overlay {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  const navbarMenu = document.getElementById("navbarMenuButton");
+  const themeMenu = document.getElementById("themeMenu");
+  const langMenu = document.getElementById("langMenu");
+  const options = document.getElementById("navbarMenuOptions");
+  const overlay = document.getElementById("navbarOverlay");
+
+  function toggleOpen() {
+    this.classList.toggle("open");
+  }
+
+  const toggleMenu = toggleOpen.bind(navbarMenu);
+
+  navbarMenu?.addEventListener("click", function() {
+    langMenu.classList.remove("open");
+    themeMenu.classList.remove("open");
+    toggleMenu();
+  });
+  themeMenu?.addEventListener("click", toggleOpen);
+  langMenu?.addEventListener("click", toggleOpen);
+  overlay.addEventListener("click", toggleMenu);
+
+  options.addEventListener("click", function({ target }) {
+    if(!target.classList.contains("actionable")) return;
+    const themeOption = target.getAttribute("data-theme-option");
+
+    if(themeOption) {
+      setCurrentTheme(themeOption);
+      toggleOpen.call(themeMenu);
+    }
+
+    toggleMenu();
+  });
+
+  window.addEventListener('resize', () => {
+  if (window.innerWidth > 750 && navbarMenu.classList.contains('open')) toggleMenu();
+});
+</script>

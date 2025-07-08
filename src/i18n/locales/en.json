@@ -1,0 +1,415 @@
+{
+  "seo": {
+    "index": {
+      "title": "Red Coupons",
+      "description": "Red Coupons connects you with the best discounts near you. Discover exclusive coupons and special promotions at your favorite stores in Colombia.",
+      "og_description": "The best prices, no need to go further"
+    },
+    "not_found": {
+      "title": "Page not found",
+      "description": "The page you are looking for doesn't exist or isn't available. Check the URL or return to the homepage.",
+      "og_description": "The page you are looking for doesn't exist or isn't available"
+    },
+    "terms_of_use": {
+      "title": "Terms of Use of Red Coupons | Red Coupons",
+      "description": "Read the Terms of Use of Red Coupons to understand your rights and responsibilities when accessing and using our services.",
+      "og_description": "Read the Terms of Use of Red Coupons to understand your rights and responsibilities when accessing and using our services."
+    },
+    "privacy_policy": {
+      "title": "Privacy Policy of Red Coupons | Red Coupons",
+      "description": "Learn how Red Coupons collects, uses, and protects your personal data in our Privacy Policy. Your privacy and trust are our priority.",
+      "og_description": "Learn how Red Coupons collects, uses, and protects your personal data in our Privacy Policy. Your privacy and trust are our priority."
+    },
+    "contact_us": {
+      "title": "Contact Us | Red Coupons",
+      "description": "Do you have questions or need help? At Red Coupons, we're here to help you.",
+      "og_description": "Do you have questions or need help? At Red Coupons, we're here to help you."
+    },
+    "language": "en",
+    "og_image": "https://apis.red-coupons.com/images/red-coupons-og-image.jpg",
+    "twitter_image": "https://apis.red-coupons.com/images/red-coupons-twitter-image.jpg"
+  },
+  "navbar": {
+    "for_businesses": "For Businesses",
+    "sign_up": "Sign Up",
+    "log_in": "Log In",
+    "language": "Language",
+    "theme": "Theme",
+    "light_theme": "Light",
+    "dark_theme": "Dark",
+    "toggle_menu": "Toggle Menu"
+  },
+  "hero": {
+    "heading": "Save More. Enjoy More. <span>Join Red Coupons Today!</span>",
+    "description": "Discover exclusive deals, special discounts - all in one app.<br />Membership is <strong>FREE</strong>!",
+    "sign_up_for_free": "Sign Up for Free",
+    "log_in": "Log In"
+  },
+  "for_shoppers": {
+    "tag": "For Shoppers",
+    "heading": "Save and earn <span>with every purchase</span>",
+    "steps": [
+      {
+        "icon": "Magnifier",
+        "label": "Browse exclusive coupon deals near you"
+      },
+      {
+        "icon": "Wallet",
+        "label": "Save coupons directly to Your wallet"
+      },
+      {
+        "icon": "Coupon",
+        "label": "Redeem coupons at partner stores"
+      },
+      {
+        "icon": "Refund",
+        "label": "Earn coupon credits with every purchase"
+      }
+    ],
+    "sign_up_button": "Sign Up for Free"
+  },
+  "for_businesses": {
+    "tag": "For Businesses",
+    "heading": "Attract customers and <span>boost your sales</span>",
+    "steps": [
+      {
+        "icon": "AddCoupon",
+        "label": "You create coupons for your business"
+      },
+      {
+        "icon": "Bullhorn",
+        "label": "We promote them for you"
+      },
+      {
+        "icon": "Coupon",
+        "label": "Customers redeem them at your location"
+      },
+      {
+        "icon": "Growth",
+        "label": "You gain new customers and increase your sales"
+      }
+    ],
+    "sign_up_button": "Sign Up for Free"
+  },
+  "testimonials": {
+    "tag": "Testimonials",
+    "heading": "Shoppers and partner businesses <span>speak for us</span>",
+    "testimonials": [
+      {
+        "photo": "AndresGomez",
+        "name": "Andrés Gómez",
+        "profile": "Verified shopper",
+        "comment": "I went out with my friends over the weekend and used a coupon to buy some drinks. I saved over $60,000, and they even gave me credit for more coupons just for the purchase!"
+      },
+      {
+        "photo": "DanielaRestrepo",
+        "name": "Daniela Restrepo",
+        "profile": "Verified shopper",
+        "comment": "A coupon popped up just as I was browsing clothes at my favorite store, and I took the chance to buy a dress I'd been eyeing for a while. With 20% off, I didn't even think twice. For real, I didn't have to wait until the end of the month!"
+      },
+      {
+        "photo": "ErnestoMartinez",
+        "name": "Ernesto Martínez",
+        "profile": "Partner Restaurant",
+        "comment": "Since joining as a partner store, I've seen more customers walk in without spending more on ads. The coupon system is easy to manage and brings results."
+      }
+    ]
+  },
+  "featured_in": {
+    "tag": "As featured in",
+    "logos": [
+      {
+        "logo": "NoticiasCaracol",
+        "title": "Noticias Caracol"
+      },
+      {
+        "logo": "RcnRadio",
+        "title": "RCN Radio"
+      },
+      {
+        "logo": "ElColombiano",
+        "title": "El Colombiano"
+      },
+      {
+        "logo": "ElTiempo",
+        "title": "El Tiempo"
+      },
+      {
+        "logo": "ElEspectador",
+        "title": "El Espectador"
+      }
+    ]
+  },
+  "benefits": {
+    "tag": "Benefits",
+    "heading": "Whether you buy or sell, <span>we have something for you</span>",
+    "shopper_benefits": {
+      "subheading": "As a shopper:",
+      "benefits": [
+        "Get exclusive coupons from partner brands and businesses.",
+        "Use them in your city or when you travel.",
+        "Earn coupon credits for every purchase or referral."
+      ]
+    },
+    "bussiness_benefits": {
+      "subheading": "As a business:",
+      "benefits": [
+        "Publish as many coupons as you want.",
+        "Reach more local customers and visitors.",
+        "Boost your sales without expensive campaigns."
+      ]
+    }
+  },
+  "subscription": {
+    "heading": "Join the <span>thousands of shoppers and businesses</span> already saving and growing!",
+    "form_role_input": {
+      "label": "Profile",
+      "options": [
+        {
+          "value": "public",
+          "label": "Shopper"
+        },
+        {
+          "value": "both",
+          "label": "Business"
+        }
+      ]
+    },
+    "form_toEmail_input": {
+      "label": "Email",
+      "placeholder": "Email",
+      "errors": [
+        {
+          "id": "blank",
+          "message": "The email is mandatory"
+        },
+        {
+          "id": "wrong-format",
+          "message": "Invalid email"
+        }
+      ]
+    },
+    "form_submit_button": {
+      "default": "Sign Up Now",
+      "loading": "Signing Up..."
+    },
+    "server_responses": [
+      {
+        "status": 200,
+        "message": "Check your email for an invitation"
+      },
+      {
+        "status": 409,
+        "message": "You're already registered"
+      },
+      {
+        "status": 500,
+        "message": "A server error occurred"
+      }
+    ]
+  },
+  "faq": {
+    "tag": "FAQ",
+    "heading": "<span>Got Questions?</span></br>We've Got Answers.",
+    "accordion": [
+      {
+        "question": "How do I use a coupon?",
+        "answer": "<p>Select the coupon you want to use from the &quot;My Coupons&quot; section and, from your phone, either activate the QR code to be scanned at the store or partner location.</p>"
+      },
+      {
+        "question": "Can I gift coupons?",
+        "answer": "<p>Yes. Just click the <strong>&quot;Send gift&quot;</strong> button on the coupon you want to gift, enter the recipient&apos;s email, and you&apos;re done.</p><p>The person will receive a notification by email.</p><ul><li>If they&apos;re already registered, the coupon will automatically appear in their <strong>&quot;My Coupons&quot;</strong> section, ready to use.</li><li>If they&apos;re not registered, the email will include an invitation to create an account and be able to use the coupon.</li></ul>"
+      },
+      {
+        "question": "In which cities can I use coupons?",
+        "answer": "<p>Coupons can be used at partner stores located in: <b>Bogotá, Medellín, La Ceja, and Cali</b> in Colombia, and <b>Asunción</b> in Paraguay.</p>"
+      },
+      {
+        "question": "How do I contact Customer Support?",
+        "answer": "<p>You can write to us at <a href='mailto:info@coupons.com'>info@coupons.com</a> or fill out the form available on our <a href='/en/contact-us'>contact page.</a></p>"
+      }
+    ]
+  },
+  "footer": {
+    "select_language": "Select language",
+    "site_links": [
+      {
+        "link": "/en/privacy-policy",
+        "text": "Privacy Policy"
+      },
+      {
+        "link": "/en/terms-of-use",
+        "text": "Terms of Use"
+      },
+      {
+        "link": "/en/contact-us",
+        "text": "Contact Us"
+      }
+    ],
+    "socials": [
+      {
+        "link": "https://www.facebook.com",
+        "logo": "Facebook",
+        "title": "Facebook"
+      },
+      {
+        "link": "https://www.instagram.com/",
+        "logo": "Instagram",
+        "title": "Instagram"
+      },
+      {
+        "link": "mailto:info@red-coupons.com",
+        "logo": "Email",
+        "title": "info@red-coupons.com"
+      }
+    ],
+    "copyright": "All Rights Reserved."
+  },
+  "not_found": {
+    "seo_title": "Page not found",
+    "info": "The page you are looking for doesn't exist or isn't available",
+    "options": "Check the URL or <a href='/en/'>return to the homepage</a>."
+  },
+  "terms_of_use": {
+    "last_update": "Last update",
+    "heading": "Terms of Use",
+    "effective_date": "Effective: ",
+    "intro": "<p>Welcome to <span>Red Coupons</span>.  By accessing or using our website and services, you agree to the following Terms of Use. Please read them carefully.</p>",
+    "sections": [
+      {
+        "heading": "1. Acceptance of Terms",
+        "text": "<p>By using our website, purchasing coupons, or subscribing to our services, you agree to comply with and be bound by these Terms of Use and our <a href='/en/privacy-policy'>Privacy Policy</a>. If you do not agree, please do not use our platform.</p>"
+      },
+      {
+        "heading": "2. Services Provided",
+        "text": "<p>Red Coupons allows users to browse, purchase, and redeem digital coupons offered by third-party merchants. Coupons are provided as-is and may be subject to additional terms set by the issuing merchant.</p>"
+      },
+      {
+        "heading": "3. User Accounts and Eligibility",
+        "text": "<ul><li>You must be at least 18 years old or of legal age in your jurisdiction to use this service.</li><li>You agree to provide accurate, complete, and updated information when registering or making a purchase.</li><li>You are responsible for maintaining the confidentiality of your account and for all activity under your account.</li></ul>"
+      },
+      {
+        "heading": "4. Payment Processing",
+        "text": "<ul><li>All payments are processed securely through third-party providers such as <b>Stripe</b>.</li><li>Red Coupons does <b>not store</b> or handle your credit card or banking details.</li><li>All transactions are subject to the terms and conditions of the payment processor.</li></ul>"
+      },
+      {
+        "heading": "5. Coupon Use and Restrictions",
+        "text": "<ul><li>Coupons may only be used as described and before the listed expiration date (if applicable).</li><li>Red Coupons is not responsible for honoring or fulfilling the offers of third-party merchants.</li><li>Any misuse, resale, or unauthorized distribution of coupons is strictly prohibited.</li></ul>"
+      },
+      {
+        "heading": "6. Refunds and Cancellations",
+        "text": "<ul><li>All coupon purchases are <b>final</b> unless otherwise stated.</li><li>Refunds may be issued at our sole discretion or according to the merchant's policy.</li><li>If a coupon is found to be invalid due to an error on our part, we will work to provide a replacement or refund.</li></ul>"
+      },
+      {
+        "heading": "7. Intellectual Property",
+        "text": "<ul><li>All content on the Red Coupons website, including logos, branding, and visuals, is the property of Red Coupons or its licensors.</li><li>You may not copy, reproduce, or use our content without written permission.</li></ul>"
+      },
+      {
+        "heading": "8. Limitation of Liability",
+        "text": "<p>To the fullest extent permitted by law:</p><ul><li>Red Coupons shall not be liable for any indirect, incidental, or consequential damages resulting from the use of our services.</li><li>We make no guarantees as to the availability or uninterrupted operation of our platform.</li></ul>"
+      },
+      {
+        "heading": "9. Termination",
+        "text": "<p>We reserve the right to suspend or terminate your access to Red Coupons at any time, for any reason, including suspected violation of these Terms.</p>"
+      },
+      {
+        "heading": "10. Governing Law",
+        "text": "<p>These Terms are governed by the laws of the United States of America, without regard to conflict of law principles.</p>"
+      },
+      {
+        "heading": "11. Changes to These Terms",
+        "text": "<p>We may update these Terms of Use from time to time. Continued use of the platform after changes have been made constitutes acceptance of the updated terms.</p>"
+      }
+    ],
+    "contact_us": {
+      "heading": "12. Contact Us",
+      "intro": "If you have any questions about these Terms, please contact us at:",
+      "email": "Email: ",
+      "website": "Website: "
+    }
+  },
+  "privacy_policy": {
+    "last_update": "Last update:",
+    "heading": "Privacy Policy",
+    "effective_date": "Effective: ",
+    "intro": "<p>At <span>Red Coupons</span>, your privacy is important to us. This Privacy Policy explains what information we collect, how we use it, and how we protect it.</p>",
+    "sections": [
+      {
+        "heading": "1. Information We Collect",
+        "text": "<p>We collect the following personal information:</p><ul><li><b>Email addresses</b> voluntarily provided by users when subscribing to our services, creating accounts, or making purchases.</li></ul><p>We <b>do not</b> collect names, phone numbers, addresses, or any sensitive personal information unless specifically provided for communication purposes.</p>"
+      },
+      {
+        "heading": "2. Payments and Financial Information",
+        "text": "<p>When you purchase coupons through <b>Stripe</b> or other secure payment gateways:</p><ul><li>Payment processing is handled entirely by the third-party payment provider.</li><li>We <b>do not store</b> or have access to your <b>credit card numbers</b>, <b>CVV codes</b> or <b>bank account details</b>.</li><li>The only payment-related information we may receive is limited to transaction confirmations (e.g., status, amount paid, email used for payment).</li></ul><p>For details on how your payment information is processed, we encourage you to review the privacy policy of the relevant payment provider.</p>"
+      },
+      {
+        "heading": "3. How We Use Your Information",
+        "text": "<p>We use the email addresses we collect to:</p><ul><li>Send you promotional coupons and discounts.</li><li>Share updates about Red Coupons and our services.</li><li>Respond to customer support inquiries.</li></ul><p>We do <b>not</b> sell, rent, or trade your personal information to third parties.</p>"
+      },
+      {
+        "heading": "4. Data Security",
+        "text": "<p>We take appropriate technical and organizational measures to protect your personal information from unauthorized access, misuse, or disclosure. All payment transactions are encrypted and handled by secure third-party processors.</p>"
+      },
+      {
+        "heading": "5. Your Rights",
+        "text": "<p>You may unsubscribe from our communications at any time using the link provided in our emails. You may also request the deletion of your email address from our system by contacting us at <a href='mailto:info@red-coupons.com'>info@red-coupons.com</a>.</p>"
+      },
+      {
+        "heading": "6. Changes to this Policy",
+        "text": "<p>We may update this Privacy Policy as our services evolve. When we do, we will revise the &quot;Last Updated&quot; date above. We encourage you to review this policy periodically.</p>"
+      }
+    ],
+    "contact_us": {
+      "heading": "7. Contact Us",
+      "intro": "If you have any questions or concerns about this Privacy Policy or how your information is handled, please contact us at:",
+      "email": "Email: ",
+      "website": "Website: "
+    }
+  },
+  "contact_us": {
+    "heading": "Contact Us",
+    "description": "We're here to help. Email us at <a href='mailto:info@red-coupons.com'>info@red-coupons.com</a> or fill out the form below. We'll get back to you shortly.",
+    "form_email_input": {
+      "label": "Email",
+      "placeholder": "Email",
+      "errors": [
+        {
+          "id": "blank",
+          "message": "The email is mandatory"
+        },
+        {
+          "id": "wrong-format",
+          "message": "Invalid email"
+        }
+      ]
+    },
+    "form_message_textarea": {
+      "label": "Message",
+      "placeholder": "Message",
+      "errors": [
+        {
+          "id": "blank",
+          "message": "The message is mandatory"
+        },
+        {
+          "id": "too-short",
+          "message": "Your message should be at least 10 characters long"
+        }
+      ]
+    },
+    "form_submit_button": {
+      "default": "Submit",
+      "loading": "Submitting..."
+    },
+    "server_responses": [
+      {
+        "status": 200,
+        "message": "We received your message!"
+      },
+      {
+        "status": 500,
+        "message": "Error! Try again later..."
+      }
+    ]
+  }
+}

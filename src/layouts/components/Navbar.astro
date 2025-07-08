@@ -1,0 +1,134 @@
+---
+import LanguagePicker from "@/layouts/components/LanguagePicker.astro";
+import Logo from "@/components/UI/Logo.astro";
+import NavbarButton from "@/layouts/components/NavbarButton.astro";
+import NavbarMenu from "@/layouts/components/NavbarMenu.astro";
+import ThemeToggle from "@/layouts/components/ThemeToggle.astro";
+import { sections } from "@/i18n";
+import { getDictionary, getLangFromUrl, useTranslatedPath } from "@/i18n/utils";
+import { links } from "@/constants";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const d = getDictionary(currentLanguage);
+const translatePath = useTranslatedPath(currentLanguage);
+const translatedSections = sections[currentLanguage];
+const homePath = translatePath("/")
+const isHomePage = Astro.url.pathname === homePath;
+---
+
+<nav class="navbar">
+  <a href={homePath} class="navbar__logo" title="Red Coupons">
+    <h1>
+      <Logo />
+    </h1>
+  </a>
+  <ul class="navbar__ul">
+    {isHomePage && (<>
+      <li class="navbar__li">
+        <a class="navbar__link" href={`#${translatedSections.forBusinesses}`}>
+          {d.navbar.for_businesses}
+        </a>
+      </li>
+      <li class="navbar__li">
+        <NavbarButton href={`#${translatedSections.subscription}`}>
+          {d.navbar.sign_up}
+        </NavbarButton>
+      </li>
+    </>)}
+    <li class="navbar__li">
+      <NavbarButton variant={isHomePage ? "secondary" : "primary"} href={links.login}>
+        {d.navbar.log_in}
+      </NavbarButton>
+    </li>
+    <li class="navbar__li">
+      <LanguagePicker />
+    </li>
+    <li class="navbar__li">
+      <ThemeToggle />
+    </li>
+  </ul>
+  <NavbarMenu isHomePage={isHomePage} />
+</nav>
+
+<style>
+  .navbar {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    width: 100%;
+    margin: auto;
+    max-width: var(--max-width-section);
+  }
+
+  .navbar__logo {
+    margin-right: auto;
+  }
+
+  .navbar__logo h1 {
+    line-height: 0.5em;
+  }
+
+  .navbar__logo:focus-visible {
+    outline: none;
+  }
+
+  :global(.navbar__logo:focus-visible svg) {
+    --logo-clr-secondary: var(--logo-clr-primary);
+  }
+
+  .navbar__ul {
+    display: none;
+    align-items: center;
+    list-style: none;
+    gap: 0.8rem;
+  }
+
+  .navbar__link {
+    display: flex;
+    align-items: center;
+    margin-right: 0.8rem;
+    font-weight: 700;
+    transition: color 150ms ease-in-out, outline-color 150ms ease-in-out;
+    border-radius: var(--border-radius-medium);
+    padding: 0 1.6rem;
+    height: 4rem;
+    outline-color: transparent;
+  }
+
+  a,
+  a:visited,
+  html[data-theme="dark"] a,
+  html[data-theme="dark"] a:visited {
+    color: inherit;
+  }
+
+  a.navbar__link:hover,
+  a.navbar__link:active,
+  a.navbar__link:focus-visible {
+    color: var(--clr-red-brand-light);
+  }
+
+  a.navbar__link:focus-visible {
+    outline: var(--clr-red-brand-light) solid 4px;
+    outline-offset: -3px;
+  }
+
+  html[data-theme="dark"] .navbar__link:hover,
+  html[data-theme="dark"] .navbar__link:active,
+  html[data-theme="dark"] .navbar__link:focus-visible,
+  html[data-theme="dark"] a.navbar__link:focus-visible {
+    color: var(--clr-red-medium);
+  }
+
+  html[data-theme="dark"] .navbar__link:focus-visible,
+  html[data-theme="dark"] a.navbar__link:focus-visible {
+    outline-color: var(--clr-red-medium);
+  }
+
+  /* 46.875em = 750px */
+  @media(min-width: 46.875em) {
+    .navbar__ul {
+      display: flex;
+    }
+  }
+</style>

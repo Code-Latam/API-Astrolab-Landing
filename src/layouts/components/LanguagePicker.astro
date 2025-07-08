@@ -1,0 +1,115 @@
+---
+import { getDictionary, getLangFromUrl, useTranslatedPath, getPathInDefaultLanguage } from "@/i18n/utils";
+import { icons } from "@/assets";
+import { languages } from "@/i18n";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(currentLanguage);
+const d = getDictionary(currentLanguage);
+const path = getPathInDefaultLanguage(Astro.url.pathname, currentLanguage);
+---
+
+<div>
+  <div class="language-picker-container">
+    <label for="languagePicker" class="language-picker__label">{d.footer.select_language}</label>
+    <select id="languagePicker" class="language-picker">
+      {Object.entries(languages).map(([lang, label]) => (
+        <option value={translatePath(path, lang)} selected={lang === currentLanguage}>{label}</option>
+      ))}
+    </select>
+    <span class="language-picker-icon navbar-button navbar-button--secondary">
+      <icons.Language />
+    </span>
+  </div>
+</div>
+
+<style>
+  .navbar__button--secondary {
+    padding: 0 1rem;
+  }
+
+  .language-picker-container {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .language-picker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .language-picker-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .language-picker:hover + .language-picker-icon,
+  .language-picker:focus-visible + .language-picker-icon {
+    background-color: var(--clr-grey-accent);
+  }
+
+  .language-picker:focus-visible + .language-picker-icon {
+    outline-color: var(--clr-grey-charcoal);
+  }
+
+  html[data-theme="dark"] .language-picker:hover + .language-picker-icon,
+  html[data-theme="dark"] .language-picker:focus-visible + .language-picker-icon {
+    background-color:var(--clr-grey-charcoal);
+  }
+
+  html[data-theme="dark"] .language-picker:focus-visible + .language-picker-icon {
+    outline-color: var(--clr-grey-smoke);
+  }
+
+  .language-picker__label {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .language-picker {
+    background-color: var(--clr-grey-smoke);
+    color: inherit;
+  }
+
+  .subscription__form-select:hover,
+  .subscription__form-select:focus-visible {
+    background-color: var(--clr-grey-accent);
+    outline: none;
+  }
+
+  html[data-theme="dark"] .language-picker {
+    background-color: var(--clr-grey-graphite);
+  }
+
+  html[data-theme="dark"] .subscription__form-select:hover,
+  html[data-theme="dark"] .subscription__form-select:focus-visible {
+    background-color: var(--clr-grey-dark);
+  }
+</style>
+
+<script>
+  const languagePicker = document.getElementById("languagePicker");
+  languagePicker?.addEventListener("change", function(e) {
+    location.href = (e.target as HTMLInputElement).value;
+  })
+</script>

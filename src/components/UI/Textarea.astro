@@ -1,0 +1,73 @@
+---
+interface Props {
+  id?: string;
+  name?: string;
+  placeholder?: string;
+  required?: boolean;
+  rows?: number | string;
+  minlength?: number | string;
+  resize?: "none" | "vertical" | "horizontal" | "both"
+}
+
+const { id, name, placeholder, required = false, rows, resize, minlength } = Astro.props;
+---
+
+<textarea
+  id={id}
+  name={name}
+  placeholder={placeholder}
+  required={required}
+  rows={rows}
+  minlength={minlength}
+  style={resize && `resize:${resize};`}
+/>
+
+<style>
+  textarea {
+    width: 100%;
+    display: block;
+    border: none;
+    background-color: var(--clr-white);
+    color: inherit;
+    padding: 1.6rem;
+    font-size: 1.6rem;
+    border-radius: 0.8rem;
+    transition: background-color 150ms ease-in-out, outline-color 150ms ease-in-out;
+    outline-color: transparent;
+    outline-width: 4px;
+    outline-style: solid;
+    outline-offset: -2px;
+  }
+
+  textarea:hover,
+  textarea:focus-visible {
+    background-color: var(--clr-white);
+  }
+
+  textarea:focus-visible {
+    outline-color: var(--clr-grey-charcoal);
+  }
+
+  textarea::selection {
+    background-color: var(--clr-grey-obsidian);
+    color: var(--clr-white);
+  }
+
+  html[data-theme="dark"] textarea {
+    background-color: var(--clr-grey-graphite);
+  }
+
+  html[data-theme="dark"] textarea:hover,
+  html[data-theme="dark"] textarea:focus-visible {
+    background-color: var(--clr-grey-dark);
+  }
+
+  html[data-theme="dark"] textarea:focus-visible {
+    outline-color: var(--clr-grey-smoke);
+  }
+
+  html[data-theme="dark"] textarea::selection {
+    background-color: var(--clr-grey-smoke);
+    color: var(--clr-black);
+  }
+</style>
