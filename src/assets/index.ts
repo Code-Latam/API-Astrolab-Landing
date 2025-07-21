@@ -46,8 +46,8 @@ import EmilyJohnson from "@/assets/photos/EmilyJohnson.jpg";
 import MichaelBrown from "@/assets/photos/MichaelBrown.jpg";
 import HeroDesktop from "@/assets/photos/hero-2.webp";
 import HeroDesktopJpg from "@/assets/photos/hero-2.jpg";
-import HeroMobileJpg from "@/assets/photos/customer-redeeming-coupon-at-clothing-store.jpg";
-import HeroMobile from "@/assets/photos/customer-redeeming-coupon-at-clothing-store.webp";
+import HeroMobileJpg from "@/assets/photos/sky.jpg";
+import HeroMobile from "@/assets/photos/sky.webp";
 
 export const icons: Record<
   string,
