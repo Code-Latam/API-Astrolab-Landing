@@ -53,7 +53,7 @@ export default defineConfig({
       cssCodeSplit: false,
     },
   },
-  site: "https://www.red-coupons.com",
+  site: "https://www.apiastrolab.com",
   integrations: [
     sitemap({
       lastmod: new Date(),

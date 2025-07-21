@@ -21,7 +21,7 @@ export const endpoints = {
 };
 
 export const emails = {
-  info: "info@red-coupons.com",
+  info: "info@apiastrolab.com",
 };
 
 export const regex = {

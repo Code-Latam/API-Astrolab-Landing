@@ -1,4 +1,4 @@
-# Red Coupons Landing Page
+# API Astrolab Landing Page
 
 This is a localized landing page built with [Astro](https://astro.build/) that supports Spanish (`es`) and English (`en`) locales. The English pages can be generated automatically from their Spanish counterparts.
 

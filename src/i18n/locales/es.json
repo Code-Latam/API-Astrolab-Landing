@@ -1,29 +1,29 @@
 {
   "seo": {
     "index": {
-      "title": "Red Coupons",
-      "description": "Red Coupons te conecta con los mejores descuentos cerca de ti. Descubre cupones exclusivos y promociones especiales en tus tiendas favoritas de Colombia.",
-      "og_description": "Los mejores precios, sin ir más lejos"
+      "title": "API Astrolab",
+      "description": "Así como el antiguo astrolabio permitió a los exploradores navegar por el vasto e incierto cielo, el API Astrolab permite a las empresas API-first de hoy dominar el complejo universo de la integración digital.",
+      "og_description": "Diseña, documenta y muestra tus APIs. API Astrolab ayuda a las empresas API-first a acelerar la integración y aumentar sus ventas."
     },
     "not_found": {
-      "title": "Página no encontrada | Red Coupons",
+      "title": "Página no encontrada | API Astrolab",
       "description": "La página que buscas no existe o no está disponible. Verifica la dirección URL o vuelve a la página de inicio.",
       "og_description": "La página que buscas no existe o no está disponible"
     },
     "terms_of_use": {
-      "title": "Términos de Uso de Red Coupons | Red Coupons",
-      "description": "Lee los Términos de Uso de Red Coupons para entender tus derechos y responsabilidades al acceder y usar nuestros servicios.",
-      "og_description": "Lee los Términos de Uso de Red Coupons para entender tus derechos y responsabilidades al acceder y usar nuestros servicios."
+      "title": "Términos de Uso de API Astrolab | API Astrolab",
+      "description": "Lee los Términos de Uso de API Astrolab para entender tus derechos y responsabilidades al acceder y usar nuestros servicios.",
+      "og_description": "Lee los Términos de Uso de API Astrolab para entender tus derechos y responsabilidades al acceder y usar nuestros servicios."
     },
     "privacy_policy": {
-      "title": "Política de Privacidad de Red Coupons | Red Coupons",
-      "description": "Conoce cómo Red Coupons recopila, utiliza y protege tus datos personales en nuestra Política de Privacidad. Tu privacidad y confianza son nuestra prioridad.",
-      "og_description": "Conoce cómo Red Coupons recopila, utiliza y protege tus datos personales en nuestra Política de Privacidad. Tu privacidad y confianza son nuestra prioridad."
+      "title": "Política de Privacidad de API Astrolab | API Astrolab",
+      "description": "Conoce cómo API Astrolab recopila, utiliza y protege tus datos personales en nuestra Política de Privacidad. Tu privacidad y confianza son nuestra prioridad.",
+      "og_description": "Conoce cómo API Astrolab recopila, utiliza y protege tus datos personales en nuestra Política de Privacidad. Tu privacidad y confianza son nuestra prioridad."
     },
     "contact_us": {
-      "title": "Contáctanos | Red Coupons",
-      "description": "¿Tienes dudas o necesitas ayuda? En Red Coupons estamos para ayudarte.",
-      "og_description": "¿Tienes dudas o necesitas ayuda? En Red Coupons estamos para ayudarte."
+      "title": "Contáctanos | API Astrolab",
+      "description": "¿Tienes dudas o necesitas ayuda? En API Astrolab estamos para ayudarte.",
+      "og_description": "¿Tienes dudas o necesitas ayuda? En API Astrolab estamos para ayudarte."
     },
     "language": "es",
     "og_image": "https://res.cloudinary.com/dlpx9ho1b/image/upload/v1745805607/red-coupons/red-coupons-og-image.jpg",
@@ -40,81 +40,81 @@
     "toggle_menu": "Mostrar/Ocultar Menú"
   },
   "hero": {
-    "heading": "Ahorra Más. Disfruta Más. <span>¡Únete a Red Coupons Hoy!</span>",
-    "description": "Descubre ofertas exclusivas, descuentos especiales, todo en una sola app.<br />¡Y la suscripción es <strong>GRATIS</strong>!",
-    "sign_up_for_free": "Regístrate Gratis",
-    "log_in": "Inicia Sesión"
-  },
+  "heading": "¡Impulsa las ventas de tus APIs! <span>¡Regístrate en API Astrolab hoy!</span>",
+  "description": "Muestra tus APIs como flujos visuales, entornos de prueba y documentación, todo en una sola plataforma.<br />¡La suscripción es <strong>GRATIS</strong>!",
+  "sign_up_for_free": "Regístrate Gratis",
+  "log_in": "Iniciar Sesión"
+},
   "for_shoppers": {
-    "tag": "Para compradores",
-    "heading": "Ahorra y gana <span>con cada compra</span>",
-    "steps": [
-      {
-        "icon": "Magnifier",
-        "label": "Encuentra ofertas exclusivas cerca de ti"
-      },
-      {
-        "icon": "Wallet",
-        "label": "Guarda cupones directamente en Tu billetera"
-      },
-      {
-        "icon": "Coupon",
-        "label": "Canjea cupones en establecimientos aliados"
-      },
-      {
-        "icon": "Refund",
-        "label": "Recibe créditos para cupones por cada compra"
-      }
-    ],
-    "sign_up_button": "Regístrate Gratis"
-  },
-  "for_businesses": {
-    "tag": "Para empresas",
-    "heading": "Atrae clientes e <span>impulsa tus ventas</span>",
-    "steps": [
-      {
-        "icon": "AddCoupon",
-        "label": "Crea cupones para tu negocio"
-      },
-      {
-        "icon": "Bullhorn",
-        "label": "Nosotros lo promocionamos"
-      },
-      {
-        "icon": "Coupon",
-        "label": "Los clientes lo canjean en tu establecimiento"
-      },
-      {
-        "icon": "Growth",
-        "label": "Ganas nuevos clientes y aumentas tus ventas"
-      }
-    ],
-    "sign_up_button": "Regístrate Gratis"
-  },
+  "tag": "Para Desarrolladores de APIs",
+  "heading": "Muestra tus flujos de trabajo API",
+  "steps": [
+    {
+      "icon": "Design_document_api",
+      "label": "Diseña y documenta tus llamadas API"
+    },
+    {
+      "icon": "Visualize_api_workflows",
+      "label": "Visualiza tus flujos de trabajo API"
+    },
+    {
+      "icon": "Invite_people_workspaces",
+      "label": "Invita personas a tus espacios de trabajo"
+    },
+    {
+      "icon": "Generate_docs_portals",
+      "label": "Genera documentación para tus portales"
+    }
+  ],
+  "sign_up_button": "Regístrate Gratis"
+},
+   "for_businesses": {
+  "tag": "Para Empresas API First",
+  "heading": "¡Explica tus APIs a tus clientes rápidamente! <span>impulsa tus ventas</span>",
+  "steps": [
+    {
+      "icon": "Create_workspace_customer",
+      "label": "Crea un espacio de trabajo para tu cliente potencial"
+    },
+    {
+      "icon": "Create_apis_workflows",
+      "label": "Crea los flujos de APIs que necesitará el cliente"
+    },
+    {
+      "icon": "Invite_customer_workspace",
+      "label": "Invita al cliente al espacio de trabajo"
+    },
+    {
+      "icon": "Close_the_sale",
+      "label": "¡Cierra la venta!"
+    }
+  ],
+  "sign_up_button": "Regístrate Gratis"
+},
   "testimonials": {
-    "tag": "Testimonios",
-    "heading": "Compradores y negocios aliados <span>hablan por nosotros</span>",
-    "testimonials": [
-      {
-        "photo": "AndresGomez",
-        "name": "Andrés Gómez",
-        "profile": "Comprador verificado",
-        "comment": "Salí con mis amigos el fin de semana y usé un cupón para comprar unos tragos. ¡Me ahorré más de $60.000 y hasta me regalaron créditos para más cupones por la compra!"
-      },
-      {
-        "photo": "DanielaRestrepo",
-        "name": "Daniela Restrepo",
-        "profile": "Compradora verificada",
-        "comment": "Me apareció un cupón justo cuando estaba mirando ropa en mi tienda favorita, y aproveché para comprarme un vestido que tenía fichado hace rato. y con el 20% de descuento no lo pensé y me animé. ¡Literal, no tuve que esperar hasta fin de mes!"
-      },
-      {
-        "photo": "ErnestoMartinez",
-        "name": "Ernesto Martínez",
-        "profile": "Restaurante aliado",
-        "comment": "Desde que empecé a ofrecer cupones para mi restaurante, el número de clientes subió en un 30%. Red Coupons resultó la mejor opción para dar a conocer mi negocio: barato y efectivo."
-      }
-    ]
-  },
+  "tag": "Testimonials",
+  "heading": "Desarrolladores y líderes tecnológicos <span>hablan por nosotros</span>",
+  "testimonials": [
+    {
+      "photo": "AndresGomez",
+      "name": "John Smith",
+      "profile": "CTO at FinPay",
+      "comment": "API Astrolab hizo increíblemente fácil diseñar y mostrar nuestros flujos de trabajo de la API de pagos. Nuestro tiempo de integración se redujo a la mitad."
+    },
+    {
+      "photo": "EmilyJohnson",
+      "name": "Emily Johnson",
+      "profile": "Lead Developer",
+      "comment": "Gracias a API Astrolab, lanzamos nuestra nueva API para socios con documentación completa y flujos visuales en días, no semanas. Es un cambio total para nuestro equipo."
+    },
+    {
+      "photo": "MichaelBrown",
+      "name": "Michael Brown",
+      "profile": "API Product Manager",
+      "comment": "Me encanta cómo Astrolab nos permite invitar a los clientes a espacios de trabajo dedicados. Entienden nuestra API mucho más rápido, y eso ha impulsado directamente nuestras ventas."
+    }
+  ]
+},
   "featured_in": {
     "tag": "Aparecimos en",
     "logos": [
@@ -141,40 +141,40 @@
     ]
   },
   "benefits": {
-    "tag": "Beneficios",
-    "heading": "Sea que compres o vendas, <span>tenemos algo para ti</span>",
-    "shopper_benefits": {
-      "subheading": "Como comprador:",
-      "benefits": [
-        "Accede a cupones exclusivos de marcas y establecimientos aliados.",
-        "Úsalos en tu ciudad o cuando viajes.",
-        "Gana créditos para cupones por cada compra o referido."
-      ]
-    },
-    "bussiness_benefits": {
-      "subheading": "Como negocio:",
-      "benefits": [
-        "Publica todos los cupones que quieras.",
-        "Llega a más clientes en tu ciudad o visitantes.",
-        "Aumenta tus ventas sin campañas costosas."
-      ]
-    }
+  "tag": "Beneficios",
+  "heading": "Ya seas desarrollador o empresa, <span>tenemos algo para ti</span>",
+  "shopper_benefits": {
+    "subheading": "Como desarrollador:",
+    "benefits": [
+      "Comprende rápidamente APIs complejas mediante flujos visuales.",
+      "Prueba llamadas a APIs en entornos sandbox sin configuraciones adicionales.",
+      "Accede a documentación completa en un solo lugar para acelerar la integración."
+    ]
   },
+  "bussiness_benefits": {
+    "subheading": "Como empresa:",
+    "benefits": [
+      "Crea espacios de trabajo dedicados para guiar a prospectos a través de tus APIs.",
+      "Reduce los ciclos de venta permitiendo que los clientes exploren y prueben tus APIs directamente.",
+      "Impulsa la adopción de tus APIs y cierra más negocios sin cuellos de botella técnicos."
+    ]
+  }
+},
   "subscription": {
-    "heading": "¡Únete a los <span>miles de compradores y negocios</span> que ya están ahorrando y creciendo!",
-    "form_role_input": {
-      "label": "Perfil",
-      "options": [
-        {
-          "value": "public",
-          "label": "Comprador"
-        },
-        {
-          "value": "both",
-          "label": "Negocio"
-        }
-      ]
-    },
+  "heading": "Únete a las <span>empresas y equipos técnicos</span> que ya están acelerando sus integraciones y aumentando sus ventas con API Astrolab.",
+  "form_role_input": {
+    "label": "Perfil",
+    "options": [
+      {
+        "value": "public",
+        "label": "Desarrollador"
+      },
+      {
+        "value": "both",
+        "label": "Empresa"
+      }
+    ]
+  },
     "form_toEmail_input": {
       "label": "Correo electrónico",
       "placeholder": "Correo electrónico",
@@ -209,27 +209,31 @@
     ]
   },
   "faq": {
-    "tag": "Preguntas frecuentes",
-    "heading": "<span>¿Tienes preguntas?</span></br>Nosotros tenemos las respuestas",
-    "accordion": [
-      {
-        "question": "¿Cómo se usan los cupones?",
-        "answer": "<p>Escoge el cupón a usar en la sección &quot;Mis cupones&quot; y, desde tu móvil, o activa el código QR para su escaneo en el establecimiento o marca aliada.</p>"
-      },
-      {
-        "question": "¿Puedo regalar cupones?",
-        "answer": "<p>Sí. Solo tienes que hacer clic en el botón <strong>&quot;Enviar regalo&quot;</strong> del cupón que quieres regalar, ingresar el correo del destinatario y listo.</p><p>La persona recibirá una notificación por correo.</p><ul><li>Si ya está registrada, el cupón aparecerá automáticamente en su sección de <strong>&quot;Mis cupones&quot;</strong>, listo para usar.</li><li>Si no está registrada, el correo incluirá una invitación para crear una cuenta y poder usar el cupón.</li></ul>"
-      },
-      {
-        "question": "¿En qué ciudades puedo usar cupones?",
-        "answer": "<p>Los cupones se pueden usar en tiendas socias ubicadas en: <b>Bogotá, Medellín, La Ceja y Cali</b> en Colombia, y <b>Asunción</b> en Paraguay.</p>"
-      },
-      {
-        "question": "¿Cómo me comunico con Atención al cliente?",
-        "answer": "<p>Puedes escribirnos al correo <a href='mailto:info@coupons.com'>info@coupons.com</a> o llenar el formulario que encuentras en nuestra <a href='/contactanos'>página de contacto.</a></p>"
-      }
-    ]
-  },
+  "tag": "FAQ",
+  "heading": "<span>¿Tienes preguntas?</span></br>Nosotros tenemos respuestas.",
+  "accordion": [
+    {
+      "question": "¿Qué es API Astrolab?",
+      "answer": "<p>API Astrolab es una plataforma que ayuda a las empresas API-first a diseñar, documentar y mostrar sus APIs mediante flujos visuales, entornos de prueba y espacios de trabajo dedicados para clientes.</p>"
+    },
+    {
+      "question": "¿Cómo puede ayudar API Astrolab a mi equipo de ventas?",
+      "answer": "<p>Al crear espacios de trabajo personalizados para cada cliente potencial, puedes guiarlos paso a paso por tus flujos de API. Esto acorta el ciclo de ventas y facilita que los prospectos digan que sí.</p>"
+    },
+    {
+      "question": "¿Necesito ser desarrollador para usar Astrolab?",
+      "answer": "<p>No. Aunque está pensado para equipos técnicos, las herramientas visuales y los flujos guiados de Astrolab hacen que sea fácil para ingenieros de ventas y account managers configurar demos y espacios para clientes sin escribir código.</p>"
+    },
+    {
+      "question": "¿Hay un plan gratuito?",
+      "answer": "<p>Sí. Puedes registrarte y empezar a crear tus primeros flujos de API y portales para clientes completamente gratis. Solo actualiza tu plan cuando necesites funciones avanzadas o más espacios de trabajo.</p>"
+    },
+    {
+      "question": "¿Cómo empiezo?",
+      "answer": "<p>Solo haz clic en <a href='#subscription'>Regístrate Gratis</a>, crea tu cuenta y comienza a diseñar tus primeros flujos de API en minutos.</p>"
+    }
+  ]
+},
   "footer": {
     "select_language": "Selecciona el idioma",
     "site_links": [
@@ -258,9 +262,9 @@
         "title": "Instagram"
       },
       {
-        "link": "mailto:info@red-coupons.com",
+        "link": "mailto:info@apiastrolab.com",
         "logo": "Email",
-        "title": "info@red-coupons.com"
+        "title": "info@apiastrolab.com"
       }
     ],
     "copyright": "Todos los derechos reservados."
@@ -274,7 +278,7 @@
     "last_update": "Última actualización",
     "heading": "Términos de Uso",
     "effective_date": "Válido a partir de: ",
-    "intro": "<p>Bienvenido a <span>Red Coupons</span>. Al acceder o utilizar nuestro sitio web y servicios, aceptas los siguientes Términos de Uso. Por favor, léelos detenidamente.</p>",
+    "intro": "<p>Bienvenido a <span>API Astrolab</span>. Al acceder o utilizar nuestro sitio web y servicios, aceptas los siguientes Términos de Uso. Por favor, léelos detenidamente.</p>",
     "sections": [
       {
         "heading": "1. Aceptación de los Términos",
@@ -282,7 +286,7 @@
       },
       {
         "heading": "2. Servicios Ofrecidos",
-        "text": "<p>Red Coupons permite a los usuarios explorar, comprar y canjear cupones digitales ofrecidos por comerciantes terceros. Los cupones se proporcionan 'tal cual' y pueden estar sujetos a términos adicionales establecidos por el comerciante emisor.</p>"
+        "text": "<p>API Astrolab permite a los usuarios explorar, comprar y canjear cupones digitales ofrecidos por comerciantes terceros. Los cupones se proporcionan 'tal cual' y pueden estar sujetos a términos adicionales establecidos por el comerciante emisor.</p>"
       },
       {
         "heading": "3. Cuentas de Usuario y Elegibilidad",
@@ -290,11 +294,11 @@
       },
       {
         "heading": "4. Procesamiento de Pagos",
-        "text": "<ul><li>Todos los pagos se procesan de forma segura a través de proveedores externos como <b>Stripe</b>.</li><li>Red Coupons <b>no almacena</b> ni gestiona tus datos de tarjeta de crédito ni bancarios.</li><li>Todas las transacciones están sujetas a los términos y condiciones del procesador de pagos.</li></ul>"
+        "text": "<ul><li>Todos los pagos se procesan de forma segura a través de proveedores externos como <b>Stripe</b>.</li><li>API Astrolab <b>no almacena</b> ni gestiona tus datos de tarjeta de crédito ni bancarios.</li><li>Todas las transacciones están sujetas a los términos y condiciones del procesador de pagos.</li></ul>"
       },
       {
         "heading": "5. Uso y Restricciones de los Cupones",
-        "text": "<ul><li>Los cupones solo pueden utilizarse según lo indicado y antes de la fecha de vencimiento (si aplica).</li><li>Red Coupons no es responsable de cumplir con las ofertas de los comerciantes terceros.</li><li>Está estrictamente prohibido el uso indebido, la reventa o la distribución no autorizada de los cupones.</li></ul>"
+        "text": "<ul><li>Los cupones solo pueden utilizarse según lo indicado y antes de la fecha de vencimiento (si aplica).</li><li>API Astrolab no es responsable de cumplir con las ofertas de los comerciantes terceros.</li><li>Está estrictamente prohibido el uso indebido, la reventa o la distribución no autorizada de los cupones.</li></ul>"
       },
       {
         "heading": "6. Reembolsos y Cancelaciones",
@@ -302,15 +306,15 @@
       },
       {
         "heading": "7. Propiedad Intelectual",
-        "text": "<ul><li>Todo el contenido del sitio web de Red Coupons, incluidos logotipos, marca e imágenes, es propiedad de Red Coupons o de sus licenciantes.</li><li>No puedes copiar, reproducir ni utilizar nuestro contenido sin autorización escrita.</li></ul>"
+        "text": "<ul><li>Todo el contenido del sitio web de API Astrolab, incluidos logotipos, marca e imágenes, es propiedad de API Astrolab o de sus licenciantes.</li><li>No puedes copiar, reproducir ni utilizar nuestro contenido sin autorización escrita.</li></ul>"
       },
       {
         "heading": "8. Limitación de Responsabilidad",
-        "text": "<p>En la máxima medida permitida por la ley:</p><ul><li>Red Coupons no será responsable por daños indirectos, incidentales o consecuentes derivados del uso de nuestros servicios.</li><li>No garantizamos la disponibilidad ni el funcionamiento ininterrumpido de la plataforma.</li></ul>"
+        "text": "<p>En la máxima medida permitida por la ley:</p><ul><li>API Astrolab no será responsable por daños indirectos, incidentales o consecuentes derivados del uso de nuestros servicios.</li><li>No garantizamos la disponibilidad ni el funcionamiento ininterrumpido de la plataforma.</li></ul>"
       },
       {
         "heading": "9. Terminación",
-        "text": "<p>Nos reservamos el derecho de suspender o cancelar tu acceso a Red Coupons en cualquier momento y por cualquier motivo, incluyendo sospechas de violación de estos Términos.</p>"
+        "text": "<p>Nos reservamos el derecho de suspender o cancelar tu acceso a API Astrolab en cualquier momento y por cualquier motivo, incluyendo sospechas de violación de estos Términos.</p>"
       },
       {
         "heading": "10. Legislación Aplicable",
@@ -332,7 +336,7 @@
     "last_update": "Última actualización:",
     "heading": "Política de Privacidad",
     "effective_date": "Válido a partir de: ",
-    "intro": "<p>En <span>Red Coupons</span>, tu privacidad es importante para nosotros. Esta Política de Privacidad explica qué información recopilamos, cómo la utilizamos y cómo la protegemos.</p>",
+    "intro": "<p>En <span>API Astrolab</span>, tu privacidad es importante para nosotros. Esta Política de Privacidad explica qué información recopilamos, cómo la utilizamos y cómo la protegemos.</p>",
     "sections": [
       {
         "heading": "1. Información que Recopilamos",
@@ -344,7 +348,7 @@
       },
       {
         "heading": "3. Cómo Utilizamos tu Información",
-        "text": "<p>Utilizamos las direcciones de correo electrónico que recopilamos para:</p><ul><li>Enviarte cupones promocionales y descuentos.</li><li>Compartir actualizaciones sobre Red Coupons y nuestros servicios.</li><li>Responder a consultas de soporte al cliente.</li></ul><p><b>No</b> vendemos, alquilamos ni compartimos tu información personal con terceros.</p>"
+        "text": "<p>Utilizamos las direcciones de correo electrónico que recopilamos para:</p><ul><li>Enviarte cupones promocionales y descuentos.</li><li>Compartir actualizaciones sobre API Astrolab y nuestros servicios.</li><li>Responder a consultas de soporte al cliente.</li></ul><p><b>No</b> vendemos, alquilamos ni compartimos tu información personal con terceros.</p>"
       },
       {
         "heading": "4. Seguridad de los Datos",
@@ -352,7 +356,7 @@
       },
       {
         "heading": "5. Tus Derechos",
-        "text": "<p>Puedes darte de baja de nuestras comunicaciones en cualquier momento mediante el enlace incluido en nuestros correos electrónicos. También puedes solicitar la eliminación de tu dirección de correo electrónico de nuestro sistema contactándonos a <a href='mailto:info@red-coupons.com'>info@red-coupons.com</a>.</p>"
+        "text": "<p>Puedes darte de baja de nuestras comunicaciones en cualquier momento mediante el enlace incluido en nuestros correos electrónicos. También puedes solicitar la eliminación de tu dirección de correo electrónico de nuestro sistema contactándonos a <a href='mailto:info@apiastrolab.com'>info@apiastrolab.com</a>.</p>"
       },
       {
         "heading": "6. Cambios en esta Política",
@@ -368,7 +372,7 @@
   },
   "contact_us": {
     "heading": "Contáctanos",
-    "description": "Estamos aquí para ayudarte. Envíanos un mensaje a <a href='mailto:info@red-coupons.com'>info@red-coupons.com</a> o llena el formulario de abajo. Te responderemos lo más pronto posible.",
+    "description": "Estamos aquí para ayudarte. Envíanos un mensaje a <a href='mailto:info@apiastrolab.com'>info@apiastrolab.com</a> o llena el formulario de abajo. Te responderemos lo más pronto posible.",
     "form_email_input": {
       "label": "Correo electrónico",
       "placeholder": "Correo electrónico",

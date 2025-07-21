@@ -1,6 +1,6 @@
 {
-  "name": "Red Coupons",
-  "short_name": "Red Coupons",
+  "name": "API Astrolab",
+  "short_name": "Astrolab",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

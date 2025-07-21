@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.red-coupons.com/sitemap-index.xml
+Sitemap: https://www.apiastrolab.com/sitemap-index.xml

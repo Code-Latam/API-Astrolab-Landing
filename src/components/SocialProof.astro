@@ -35,22 +35,23 @@ const d = getDictionary(currentLanguage);
       }
     </div>
   </section>
-  <section class="featured-in">
-    <span class="featured-in__tag">{d.featured_in.tag}</span>
-    <div class="featured-in__logos">
-      {
-        d.featured_in.logos.map(({ logo, title }) => {
-          const Logo = logos[logo];
-
-          return (
-            <span class="featured-in__logo">
-              <Logo aria-label={title} />
-            </span>
-          );
-        })
-      }
-    </div>
-  </section>
+ {/* 
+<section class="featured-in">
+  <span class="featured-in__tag">{d.featured_in.tag}</span>
+  <div class="featured-in__logos">
+    {
+      d.featured_in.logos.map(({ logo, title }) => {
+        const Logo = logos[logo];
+        return (
+          <span class="featured-in__logo">
+            <Logo aria-label={title} />
+          </span>
+        );
+      })
+    }
+  </div>
+</section>
+*/}
 </section>
 
 <style>

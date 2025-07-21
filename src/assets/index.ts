@@ -17,6 +17,18 @@ import Wallet from "@/assets/icons/wallet.svg";
 import Website from "@/assets/icons/website.svg";
 import XMark from "@/assets/icons/x-mark.svg";
 
+import Design_document_api from "@/assets/icons/design_document_api.svg";
+import Generate_docs_portals from "@/assets/icons/generate_docs_portals.svg";
+import Invite_people_workspaces from "@/assets/icons/invite_people_workspaces.svg";
+import Visualize_api_workflows from "@/assets/icons/visualize_api_workflows.svg";
+
+import Close_the_sale from "@/assets/icons/close_the_sale.svg";
+import Invite_customer_workspace from "@/assets/icons/invite_customer_workspace.svg";
+import Create_apis_workflows from "@/assets/icons/create_apis_workflows.svg";
+import Create_workspace_customer from "@/assets/icons/create_workspace_customer.svg";
+
+
+
 // LOGOS
 import ElColombiano from "@/assets/logos/el-colombiano.svg";
 import ElEspectador from "@/assets/logos/el-espectador.svg";
@@ -30,8 +42,8 @@ import Twitter from "@/assets/logos/x-twitter.svg";
 
 // PHOTOS
 import AndresGomez from "@/assets/photos/andres-gomez.jpg";
-import DanielaRestrepo from "@/assets/photos/daniela-restrepo.jpg";
-import ErnestoMartinez from "@/assets/photos/ernesto-martinez.jpg";
+import EmilyJohnson from "@/assets/photos/EmilyJohnson.jpg";
+import MichaelBrown from "@/assets/photos/MichaelBrown.jpg";
 import HeroDesktop from "@/assets/photos/hero-2.webp";
 import HeroDesktopJpg from "@/assets/photos/hero-2.jpg";
 import HeroMobileJpg from "@/assets/photos/customer-redeeming-coupon-at-clothing-store.jpg";
@@ -58,6 +70,14 @@ export const icons: Record<
   Wallet,
   Website,
   XMark,
+  Design_document_api,
+  Generate_docs_portals,
+  Invite_people_workspaces,
+  Visualize_api_workflows,
+  Close_the_sale,
+  Invite_customer_workspace,
+  Create_apis_workflows,
+  Create_workspace_customer
 };
 
 export const logos: Record<
@@ -78,8 +98,8 @@ export const logos: Record<
 
 export const photos: Record<string, ImageMetadata> = {
   AndresGomez,
-  DanielaRestrepo,
-  ErnestoMartinez,
+  EmilyJohnson,
+  MichaelBrown,
   HeroDesktop,
   HeroMobile,
   HeroDesktopJpg,
