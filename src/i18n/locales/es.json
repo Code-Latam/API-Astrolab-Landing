@@ -26,7 +26,7 @@
       "og_description": "¿Tienes dudas o necesitas ayuda? En API Astrolab estamos para ayudarte."
     },
     "language": "es",
-    "og_image": "https://res.cloudinary.com/dlpx9ho1b/image/upload/v1745805607/red-coupons/api-astrolab-og-image.jpg",
+    "og_image": "https://apis.apiastrolab.com/images/api-astrolab-og-image.jpg",
     "twitter_image":"https://apis.apiastrolab.com/images/api_astrolab_twitter_image.jpg"
   },
   "navbar": {
