@@ -5,7 +5,6 @@ import FormBlock from "@/components/UI/FormBlock.astro";
 import FormLabel from "@/components/UI/FormLabel.astro";
 import FormInput from "@/components/UI/FormInput.astro";
 import Button from "@/components/UI/Button.astro";
-import Select from "@/components/UI/Select.astro";
 import Toast from "@/components/UI/Toast.astro";
 
 const currentLanguage = getLangFromUrl(Astro.url);
@@ -16,21 +15,24 @@ const translatedSections = sections[currentLanguage];
 <section id={translatedSections.subscription} class="subscription">
   <div class="split-layout-col">
     <div class="subscription__content">
-      <h2 class="subscription__heading" set:html={d.subscription.heading}>
-      </h2>
+      <h2 class="subscription__heading" set:html={d.subscription.heading}></h2>
       <form id="subscriptionForm" class="subscription__form">
         <input type="hidden" name="language" value={currentLanguage}>
-        <FormBlock id="roleFormBlock">
-          <FormLabel htmlFor="role" slot="label">
-            {d.subscription.form_role_input.label}
+
+        <FormBlock id="clientNameFormBlock">
+          <FormLabel htmlFor="clientName" slot="label">
+            Client Name
           </FormLabel>
-          <Select
-            id="role"
-            name="role"
-            options={d.subscription.form_role_input.options}
+          <FormInput
+            id="clientName"
+            type="text"
+            name="clientName"
+            placeholder="YourClientName"
+            required
             slot="control"
           />
         </FormBlock>
+
         <FormBlock id="emailFormBlock" errors={d.subscription.form_toEmail_input.errors}>
           <FormLabel htmlFor="toEmail" slot="label">
             {d.subscription.form_toEmail_input.label}
@@ -44,14 +46,11 @@ const translatedSections = sections[currentLanguage];
             slot="control"
           />
         </FormBlock>
+
         <div class="subscription__form-button-container">
           <Button id="subscriptionFormButton" type="submit" disabled>
-            <span slot="default">
-              {d.subscription.form_submit_button.default}
-            </span>
-            <span slot="loading">
-              {d.subscription.form_submit_button.loading}
-            </span>
+            <span slot="default">{d.subscription.form_submit_button.default}</span>
+            <span slot="loading">{d.subscription.form_submit_button.loading}</span>
           </Button>
         </div>
       </form>
@@ -68,7 +67,6 @@ const translatedSections = sections[currentLanguage];
     flex: 1;
   }
 
-  /* min-width: 792px */
   @media (min-width: 49.5em) {
     .split-layout-col {
       max-width: calc(var(--max-width-section) / 2 - var(--spacing-horizontal));
@@ -101,54 +99,69 @@ const translatedSections = sections[currentLanguage];
 
 <script>
   import { endpoints, regex } from "@/constants";
-  let timer: NodeJS.Timeout;
+  let timer;
   let touchedEmail = false;
+  let touchedClientName = false;
 
-  const form = document.getElementById("subscriptionForm") as HTMLFormElement;
-  const email = document.getElementById("email") as HTMLInputElement;
-  const emailBlock = document.getElementById("emailFormBlock") as HTMLElement;
-  const submitButton = document.getElementById("subscriptionFormButton") as HTMLButtonElement;
-  const subscriptionStatusToast = document.getElementById("statusToast") as HTMLElement;
-  const subscriptionToastCloseButton = subscriptionStatusToast.querySelector(".toast__close-button") as HTMLButtonElement;
+  const form = document.getElementById("subscriptionForm");
+  const email = document.getElementById("email");
+  const clientName = document.getElementById("clientName");
+  const emailBlock = document.getElementById("emailFormBlock");
+  const clientNameBlock = document.getElementById("clientNameFormBlock");
+  const submitButton = document.getElementById("subscriptionFormButton");
+  const subscriptionStatusToast = document.getElementById("statusToast");
+  const subscriptionToastCloseButton = subscriptionStatusToast.querySelector(".toast__close-button");
 
-  function validateEmail(email: string) {
+  function validateEmail(email) {
     const trimmedEmail = email?.trim();
-    if(!trimmedEmail) return "blank"
-
+    if (!trimmedEmail) return "blank";
     const validEmail = regex.EMAIL.test(trimmedEmail);
-    if(!validEmail) return "wrong-format"
-
+    if (!validEmail) return "wrong-format";
     return "";
   }
 
-  function updateFeedback(errorMessage: string) {
-    if(errorMessage) {
-      (emailBlock.querySelectorAll(".form-block__feedback") as NodeListOf<HTMLElement>).forEach((feedback) => {
-        if(feedback.dataset.feedback !== errorMessage) {
-          feedback.style.display = "none"
-        } else {
-          feedback.style.display = "block"
-        }
-      })
+  function validateClientName(value) {
+    const trimmed = value?.trim();
+    if (!trimmed) return "blank";
+    const valid = /^[a-zA-Z0-9_-]+$/.test(trimmed);
+    if (!valid) return "invalid";
+    return "";
+  }
+
+  function updateFeedback(errorMessage) {
+    if (errorMessage) {
+      emailBlock.querySelectorAll(".form-block__feedback").forEach((feedback) => {
+        feedback.style.display = feedback.dataset.feedback === errorMessage ? "block" : "none";
+      });
       submitButton.disabled = true;
     } else {
-      (emailBlock.querySelectorAll(".form-block__feedback") as NodeListOf<HTMLElement>).forEach((feedback) => {
+      emailBlock.querySelectorAll(".form-block__feedback").forEach((feedback) => {
         feedback.style.display = "none";
-      })
+      });
       submitButton.disabled = false;
     }
   }
 
-  function openToast(status: number | string) {
+  function updateClientNameFeedback(errorMessage) {
+    if (errorMessage) {
+      clientNameBlock.querySelectorAll(".form-block__feedback").forEach((feedback) => {
+        feedback.style.display = feedback.dataset.feedback === errorMessage ? "block" : "none";
+      });
+      submitButton.disabled = true;
+    } else {
+      clientNameBlock.querySelectorAll(".form-block__feedback").forEach((feedback) => {
+        feedback.style.display = "none";
+      });
+      submitButton.disabled = false;
+    }
+  }
+
+  function openToast(status) {
     const errorResponse = +status >= 400;
     const variant = errorResponse ? "error" : "success";
-    (subscriptionStatusToast.querySelectorAll(".toast__message") as NodeListOf<HTMLElement>).forEach(message => {
-      if(message.className === `toast__message toast__message--${status}`) {
-        message.style.display = "block"
-      } else {
-        message.style.display = "none"
-      }
-    })
+    subscriptionStatusToast.querySelectorAll(".toast__message").forEach((message) => {
+      message.style.display = message.className === `toast__message toast__message--${status}` ? "block" : "none";
+    });
     subscriptionToastCloseButton.disabled = false;
     subscriptionStatusToast.className = `toast active ${variant}`;
   }
@@ -156,7 +169,7 @@ const translatedSections = sections[currentLanguage];
   function closeToast() {
     subscriptionStatusToast.classList.remove("active");
     subscriptionToastCloseButton.disabled = true;
-    if(+(submitButton.dataset.shouldDisable as string)) {
+    if (+submitButton.dataset.shouldDisable) {
       submitButton.disabled = true;
     } else {
       submitButton.disabled = false;
@@ -167,43 +180,62 @@ const translatedSections = sections[currentLanguage];
   function resetForm() {
     form.reset();
     touchedEmail = false;
+    touchedClientName = false;
     submitButton.disabled = true;
   }
 
-  email.addEventListener("input", function (e) {
-    const errorMessage = validateEmail((e.target as HTMLInputElement).value);
-    if(errorMessage && !touchedEmail) return;
+  email.addEventListener("input", (e) => {
+    const errorMessage = validateEmail(e.target.value);
+    if (errorMessage && !touchedEmail) return;
     updateFeedback(errorMessage);
   });
 
   email.addEventListener("blur", function listenEmailBlur(e) {
     touchedEmail = true;
-    const errorMessage = validateEmail((e.target as HTMLInputElement).value);
+    const errorMessage = validateEmail(e.target.value);
     updateFeedback(errorMessage);
     email.removeEventListener("blur", listenEmailBlur);
   });
 
-  form?.addEventListener("submit", async function(e) {
+  clientName.addEventListener("input", (e) => {
+    const errorMessage = validateClientName(e.target.value);
+    if (errorMessage && !touchedClientName) return;
+    updateClientNameFeedback(errorMessage);
+  });
+
+  clientName.addEventListener("blur", function listenClientNameBlur(e) {
+    touchedClientName = true;
+    const errorMessage = validateClientName(e.target.value);
+    updateClientNameFeedback(errorMessage);
+    clientName.removeEventListener("blur", listenClientNameBlur);
+  });
+
+  form?.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     submitButton.classList.add("loading");
     submitButton.disabled = true;
 
     const formData = new FormData(form);
-    const body = Object.fromEntries(formData.entries());
-    body.toEmail = (body.toEmail as string).trim().toLowerCase();
+    const raw = Object.fromEntries(formData.entries());
 
-    const { status } = await fetch(endpoints.sendInvite, {
+    const body = {
+      clientNr: raw.clientName.trim(),
+      email: raw.toEmail.trim().toLowerCase(),
+      language: raw.language,
+    };
+
+    const { status } = await fetch(endpoints.subscribe, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     openToast(status);
     submitButton.classList.remove("loading");
-    if(+status >= 400) {
+    if (+status >= 400) {
       submitButton.setAttribute("data-should-disable", "0");
     } else {
       submitButton.setAttribute("data-should-disable", "1");
@@ -216,5 +248,5 @@ const translatedSections = sections[currentLanguage];
   subscriptionToastCloseButton.addEventListener("click", () => {
     closeToast();
     clearTimeout(timer);
-  })
+  });
 </script>

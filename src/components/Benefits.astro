@@ -15,8 +15,16 @@ const d = getDictionary(currentLanguage);
         <h3 class="benefits__subheading">{d.benefits.shopper_benefits.subheading}</h3>
         <ul class="benefits__list">
           {
-            d.benefits.shopper_benefits.benefits.map(benefit => (
-              <li class="benefit">{benefit}</li>
+             d.benefits.shopper_benefits.benefits.map((benefit, index) => (
+              <li class="benefit">
+      {
+        index === 3 ? (
+          <a href="https://wiki.apiastrolab.com" target="_blank" rel="noopener noreferrer">{benefit}</a>
+        ) : (
+          benefit
+        )
+      }
+    </li>
             ))
           }
         </ul>
@@ -25,9 +33,15 @@ const d = getDictionary(currentLanguage);
         <h3 class="benefits__subheading">{d.benefits.bussiness_benefits.subheading}</h3>
         <ul class="benefits__list">
           {
-            d.benefits.bussiness_benefits.benefits.map(benefit => (
-              <li class="benefit">{benefit}</li>
-            ))
+            d.benefits.bussiness_benefits.benefits.map((benefit, index) => (
+            <li class="benefit">
+              {
+                index === 3
+                  ? <a href="https://apiastrolab.zohodesk.com/portal/en/home" target="_blank" rel="noopener noreferrer">{benefit}</a>
+                  : benefit
+              }
+            </li>
+          ))
           }
         </ul>
       </section>

@@ -26,8 +26,8 @@
       "og_description": "Do you have questions or need help? At API Astrolab, we're here to help you."
     },
     "language": "en",
-    "og_image": "https://apis.apiastrolab.com/images/red-coupons-og-image.jpg",
-    "twitter_image": "https://apis.apiastrolab.com/images/red-coupons-twitter-image.jpg"
+    "og_image": "https://apis.apiastrolab.com/images/api-astrolab-og-image.jpg",
+    "twitter_image": "https://apis.apiastrolab.com/images/api_astrolab_twitter_image.jpg"
   },
   "navbar": {
     "for_businesses": "For Businesses",
@@ -148,7 +148,8 @@
     "benefits": [
       "Quickly understand complex APIs through visual workflows.",
       "Test API calls in sandbox environments without extra setup.",
-      "Access complete documentation in one place to accelerate integration."
+      "Access complete documentation in one place to accelerate integration.",
+      "Understand how the API Astrolab Platform works."
     ]
   },
   "bussiness_benefits": {
@@ -156,7 +157,8 @@
     "benefits": [
       "Create dedicated workspaces to guide prospects through your APIs.",
       "Reduce sales cycles by letting customers explore and test your APIs directly.",
-      "Boost API adoption and close more deals without technical bottlenecks."
+      "Boost API adoption and close more deals without technical bottlenecks.",
+      "Get Support with onboarding"
     ]
   }
 },
@@ -201,6 +203,10 @@
       {
         "status": 409,
         "message": "You're already registered"
+      },
+      {
+        "status": 408,
+        "message": "We could not send your invitation email"
       },
       {
         "status": 500,

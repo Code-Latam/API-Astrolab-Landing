@@ -17,6 +17,7 @@ export const links = {
 
 export const endpoints = {
   sendInvite: `${BACKEND_URL}/invitation/landing-invite`,
+  subscribe: `${BACKEND_URL}/clients/subscribe`,
   contactUs: `${BACKEND_URL}/send/contact`,
 };
 

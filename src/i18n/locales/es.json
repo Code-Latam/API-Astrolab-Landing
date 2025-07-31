@@ -26,8 +26,8 @@
       "og_description": "¿Tienes dudas o necesitas ayuda? En API Astrolab estamos para ayudarte."
     },
     "language": "es",
-    "og_image": "https://res.cloudinary.com/dlpx9ho1b/image/upload/v1745805607/red-coupons/red-coupons-og-image.jpg",
-    "twitter_image": "https://res.cloudinary.com/dlpx9ho1b/image/upload/v1745805608/red-coupons/red-coupons-twitter-image.jpg"
+    "og_image": "https://res.cloudinary.com/dlpx9ho1b/image/upload/v1745805607/red-coupons/api-astrolab-og-image.jpg",
+    "twitter_image":"https://apis.apiastrolab.com/images/api_astrolab_twitter_image.jpg"
   },
   "navbar": {
     "for_businesses": "Para Empresas",
@@ -148,7 +148,8 @@
     "benefits": [
       "Comprende rápidamente APIs complejas mediante flujos visuales.",
       "Prueba llamadas a APIs en entornos sandbox sin configuraciones adicionales.",
-      "Accede a documentación completa en un solo lugar para acelerar la integración."
+      "Accede a documentación completa en un solo lugar para acelerar la integración.",
+      "Entiende cómo funciona la plataforma de API Astrolab."
     ]
   },
   "bussiness_benefits": {
@@ -156,7 +157,8 @@
     "benefits": [
       "Crea espacios de trabajo dedicados para guiar a prospectos a través de tus APIs.",
       "Reduce los ciclos de venta permitiendo que los clientes exploren y prueben tus APIs directamente.",
-      "Impulsa la adopción de tus APIs y cierra más negocios sin cuellos de botella técnicos."
+      "Impulsa la adopción de tus APIs y cierra más negocios sin cuellos de botella técnicos.",
+      "Obtén soporte para el proceso de onboarding."
     ]
   }
 },
@@ -201,6 +203,10 @@
       {
         "status": 409,
         "message": "Ya estás registrado"
+      },
+      {
+        "status": 408,
+        "message": "No se pudo enviar tu correo"
       },
       {
         "status": 500,
