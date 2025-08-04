@@ -1,0 +1,90 @@
+---
+import StandardLayout from "@/layouts/StandardLayout.astro";
+import { getDictionary, getLangFromUrl } from "@/i18n/utils";
+import { locales } from "@/i18n";
+
+const currentLanguage = getLangFromUrl(Astro.url);
+const d = getDictionary(currentLanguage);
+const locale = locales[currentLanguage];
+const lastUpdate = "05/01/2025";
+---
+
+<StandardLayout
+  title="API Astrolab Demo Videos"
+  description="Demo videos explaining how to use API Astrolab features"
+  ogDescription="Watch and learn how to get started with API Astrolab"
+  language={currentLanguage}
+  ogImage="/og-image.jpg"
+  twitterImage="/twitter-card.jpg"
+>
+  <main>
+    <div class="header">
+      <p class="header__last-update">Last updated: {lastUpdate}</p>
+      <h1 class="header__title">{d.videos?.title || "API Astrolab Demo Videos"}</h1>
+    </div>
+
+    <div class="content">
+      <section class="content__section">
+        <h2 class="content__section-title">How to sell using the API Astrolab</h2>
+        <br> </br>
+        <video controls width="100% poster="/posters/my-video-thumbnail.jpg">
+          <source src="/videos/video-Selling-API-Astrolab.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </section>
+    </div>
+  </main>
+</StandardLayout>
+
+<style>
+  main {
+    color: var(--clr-black);
+    background-color: var(--clr-grey-smoke);
+    padding: var(--spacing-vertical) var(--spacing-horizontal);
+  }
+
+  html[data-theme="dark"] main {
+    color: var(--clr-white);
+    background-color: var(--clr-black);
+  }
+
+  .header, .content {
+    max-width: var(--max-width-section);
+    margin: auto;
+  }
+
+  .header__last-update {
+    font-size: 1.4rem;
+    color: var(--clr-grey-dark);
+  }
+
+  html[data-theme="dark"] .header__last-update {
+    color: var(--clr-grey-accent);
+  }
+
+  .header__title {
+    margin-top: 1.2rem;
+    color: var(--clr-red-brand-light);
+  }
+
+  html[data-theme="dark"] .header__title {
+    color: var(--clr-red-medium);
+  }
+
+  .content {
+    margin-top: 4rem;
+  }
+
+  .content__section {
+    margin-top: 4.8rem;
+  }
+
+  .content__section-title {
+    color: var(--clr-red-brand-light);
+    font-size: 2rem;
+  }
+
+  html[data-theme="dark"] .content__section-title {
+    color: var(--clr-red-medium);
+  }
+</style>

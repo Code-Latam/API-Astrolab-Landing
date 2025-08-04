@@ -254,6 +254,10 @@
       {
         "link": "/contactanos",
         "text": "Contáctanos"
+      },
+      {
+        "link": "/videos",
+        "text": "Videos"
       }
     ],
     "socials": [

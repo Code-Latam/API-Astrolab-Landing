@@ -6,6 +6,11 @@
       "rewrite": "/en/index.html"
     },
     {
+      "route": "/en/videos",
+      "methods": ["GET"],
+      "rewrite": "/en/videos/index.html"
+    },
+    {
       "route": "/en/index.html",
       "methods": ["GET"],
       "rewrite": "/en/index.html"
