@@ -288,11 +288,11 @@
     "sections": [
       {
         "heading": "1. Acceptance of Terms",
-        "text": "<p>By using our website, purchasing coupons, or subscribing to our services, you agree to comply with and be bound by these Terms of Use and our <a href='/en/privacy-policy'>Privacy Policy</a>. If you do not agree, please do not use our platform.</p>"
+        "text": "<p>By using our website or subscribing to our services, you agree to comply with and be bound by these Terms of Use and our <a href='/en/privacy-policy'>Privacy Policy</a>. If you do not agree, please do not use our platform.</p>"
       },
       {
         "heading": "2. Services Provided",
-        "text": "<p>API Astrolab allows users to browse, purchase, and redeem digital coupons offered by third-party merchants. Coupons are provided as-is and may be subject to additional terms set by the issuing merchant.</p>"
+        "text": "<p>API Astrolab allows users Create workflows that showcase users APIs in workspaces. Users may invite other users to their workspace. A suite of other features are supported. All features can be found at wiki.astrolab.com</p>"
       },
       {
         "heading": "3. User Accounts and Eligibility",
@@ -303,12 +303,8 @@
         "text": "<ul><li>All payments are processed securely through third-party providers such as <b>Stripe</b>.</li><li>API Astrolab does <b>not store</b> or handle your credit card or banking details.</li><li>All transactions are subject to the terms and conditions of the payment processor.</li></ul>"
       },
       {
-        "heading": "5. Coupon Use and Restrictions",
-        "text": "<ul><li>Coupons may only be used as described and before the listed expiration date (if applicable).</li><li>API Astrolab is not responsible for honoring or fulfilling the offers of third-party merchants.</li><li>Any misuse, resale, or unauthorized distribution of coupons is strictly prohibited.</li></ul>"
-      },
-      {
         "heading": "6. Refunds and Cancellations",
-        "text": "<ul><li>All coupon purchases are <b>final</b> unless otherwise stated.</li><li>Refunds may be issued at our sole discretion or according to the merchant's policy.</li><li>If a coupon is found to be invalid due to an error on our part, we will work to provide a replacement or refund.</li></ul>"
+        "text": "<ul><li>All purchases are <b>final</b> unless otherwise stated.</li><li>Refunds may be issued at our sole discretion or according to the merchant's policy.</li></ul>"
       },
       {
         "heading": "7. Intellectual Property",
@@ -350,11 +346,11 @@
       },
       {
         "heading": "2. Payments and Financial Information",
-        "text": "<p>When you purchase coupons through <b>Stripe</b> or other secure payment gateways:</p><ul><li>Payment processing is handled entirely by the third-party payment provider.</li><li>We <b>do not store</b> or have access to your <b>credit card numbers</b>, <b>CVV codes</b> or <b>bank account details</b>.</li><li>The only payment-related information we may receive is limited to transaction confirmations (e.g., status, amount paid, email used for payment).</li></ul><p>For details on how your payment information is processed, we encourage you to review the privacy policy of the relevant payment provider.</p>"
+        "text": "<p>When you make a purchase through <b>Stripe</b> or other secure payment gateways:</p><ul><li>Payment processing is handled entirely by the third-party payment provider.</li><li>We <b>do not store</b> or have access to your <b>credit card numbers</b>, <b>CVV codes</b> or <b>bank account details</b>.</li><li>The only payment-related information we may receive is limited to transaction confirmations (e.g., status, amount paid, email used for payment).</li></ul><p>For details on how your payment information is processed, we encourage you to review the privacy policy of the relevant payment provider.</p>"
       },
       {
         "heading": "3. How We Use Your Information",
-        "text": "<p>We use the email addresses we collect to:</p><ul><li>Send you promotional coupons and discounts.</li><li>Share updates about API Astrolab and our services.</li><li>Respond to customer support inquiries.</li></ul><p>We do <b>not</b> sell, rent, or trade your personal information to third parties.</p>"
+        "text": "<p>We use the email addresses we collect to:</p><ul><li>Send you promotions and discounts.</li><li>Share updates about API Astrolab and our services.</li><li>Respond to customer support inquiries.</li></ul><p>We do <b>not</b> sell, rent, or trade your personal information to third parties.</p>"
       },
       {
         "heading": "4. Data Security",

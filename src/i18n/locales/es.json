@@ -288,11 +288,11 @@
     "sections": [
       {
         "heading": "1. Aceptación de los Términos",
-        "text": "<p>Al utilizar nuestro sitio web, comprar cupones o suscribirte a nuestros servicios, aceptas cumplir con estos Términos de Uso y con nuestra <a href='/politica-de-privacidad'>Política de Privacidad</a>. Si no estás de acuerdo, por favor no utilices nuestra plataforma.</p>"
+        "text": "<p>Al utilizar nuestro sitio web o suscribirte a nuestros servicios, aceptas cumplir con estos Términos de Uso y con nuestra <a href='/politica-de-privacidad'>Política de Privacidad</a>. Si no estás de acuerdo, por favor no utilices nuestra plataforma.</p>"
       },
       {
         "heading": "2. Servicios Ofrecidos",
-        "text": "<p>API Astrolab permite a los usuarios explorar, comprar y canjear cupones digitales ofrecidos por comerciantes terceros. Los cupones se proporcionan 'tal cual' y pueden estar sujetos a términos adicionales establecidos por el comerciante emisor.</p>"
+        "text": "<p>API Astrolab permite a los usuarios crear flujos de trabajo que muestran sus APIs en espacios de trabajo. Los usuarios pueden invitar a otros usuarios a su espacio. Se admite un conjunto de otras funcionalidades. Todas las características se pueden consultar en wiki.astrolab.com.</p>"
       },
       {
         "heading": "3. Cuentas de Usuario y Elegibilidad",
@@ -303,12 +303,8 @@
         "text": "<ul><li>Todos los pagos se procesan de forma segura a través de proveedores externos como <b>Stripe</b>.</li><li>API Astrolab <b>no almacena</b> ni gestiona tus datos de tarjeta de crédito ni bancarios.</li><li>Todas las transacciones están sujetas a los términos y condiciones del procesador de pagos.</li></ul>"
       },
       {
-        "heading": "5. Uso y Restricciones de los Cupones",
-        "text": "<ul><li>Los cupones solo pueden utilizarse según lo indicado y antes de la fecha de vencimiento (si aplica).</li><li>API Astrolab no es responsable de cumplir con las ofertas de los comerciantes terceros.</li><li>Está estrictamente prohibido el uso indebido, la reventa o la distribución no autorizada de los cupones.</li></ul>"
-      },
-      {
         "heading": "6. Reembolsos y Cancelaciones",
-        "text": "<ul><li>Todas las compras de cupones son <b>finales</b>, salvo que se indique lo contrario.</li><li>Los reembolsos pueden emitirse a nuestra entera discreción o de acuerdo con la política del comerciante.</li><li>Si un cupón resulta inválido debido a un error de nuestra parte, trabajaremos para proporcionar un reemplazo o un reembolso.</li></ul>"
+        "text": "<ul><li>Todas las compras son <b>finales</b>, salvo que se indique lo contrario.</li><li>Los reembolsos pueden emitirse a nuestra entera discreción o de acuerdo con la política del comerciante.</li><li>Si un cupón resulta inválido debido a un error de nuestra parte, trabajaremos para proporcionar un reemplazo o un reembolso.</li></ul>"
       },
       {
         "heading": "7. Propiedad Intelectual",
@@ -350,11 +346,11 @@
       },
       {
         "heading": "2. Pagos e Información Financiera",
-        "text": "<p>Cuando compras cupones a través de <b>Stripe</b> u otras pasarelas de pago seguras:</p><ul><li>El procesamiento del pago es gestionado completamente por el proveedor de pagos externo.</li><li><b>No almacenamos</b> ni tenemos acceso a los <b>números de tu tarjeta de crédito</b>, <b>códigos CVV</b> o <b>datos de tus cuentas bancarias</b>.</li><li>La única información relacionada con el pago que podríamos recibir está limitada a confirmaciones de transacción (por ejemplo: estado, monto pagado, correo electrónico utilizado para el pago).</li></ul><p>Para más detalles sobre cómo se procesa tu información de pago, te recomendamos revisar la política de privacidad del proveedor de pagos correspondiente.</p>"
+        "text": "<p>Cuando hagas una compra a través de <b>Stripe</b> u otras pasarelas de pago seguras:</p><ul><li>El procesamiento del pago es gestionado completamente por el proveedor de pagos externo.</li><li><b>No almacenamos</b> ni tenemos acceso a los <b>números de tu tarjeta de crédito</b>, <b>códigos CVV</b> o <b>datos de tus cuentas bancarias</b>.</li><li>La única información relacionada con el pago que podríamos recibir está limitada a confirmaciones de transacción (por ejemplo: estado, monto pagado, correo electrónico utilizado para el pago).</li></ul><p>Para más detalles sobre cómo se procesa tu información de pago, te recomendamos revisar la política de privacidad del proveedor de pagos correspondiente.</p>"
       },
       {
         "heading": "3. Cómo Utilizamos tu Información",
-        "text": "<p>Utilizamos las direcciones de correo electrónico que recopilamos para:</p><ul><li>Enviarte cupones promocionales y descuentos.</li><li>Compartir actualizaciones sobre API Astrolab y nuestros servicios.</li><li>Responder a consultas de soporte al cliente.</li></ul><p><b>No</b> vendemos, alquilamos ni compartimos tu información personal con terceros.</p>"
+        "text": "<p>Utilizamos las direcciones de correo electrónico que recopilamos para:</p><ul><li>Enviarte promociones y descuentos.</li><li>Compartir actualizaciones sobre API Astrolab y nuestros servicios.</li><li>Responder a consultas de soporte al cliente.</li></ul><p><b>No</b> vendemos, alquilamos ni compartimos tu información personal con terceros.</p>"
       },
       {
         "heading": "4. Seguridad de los Datos",
