@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.apiastrolab.com/</loc>
+    <lastmod>2025-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://www.apiastrolab.com/en/contact-us</loc>
+    <lastmod>2025-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://www.apiastrolab.com/en/privacy-policy</loc>
+    <lastmod>2025-08-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Terms of Use -->
+  <url>
+    <loc>https://www.apiastrolab.com/en/terms-of-use</loc>
+    <lastmod>2025-08-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Videos -->
+  <url>
+    <loc>https://www.apiastrolab.com/en/videos</loc>
+    <lastmod>2025-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
