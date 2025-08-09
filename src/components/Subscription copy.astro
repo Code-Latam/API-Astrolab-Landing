@@ -104,7 +104,7 @@ const translatedSections = sections[currentLanguage];
   let touchedClientName = false;
 
   const form = document.getElementById("subscriptionForm");
-  const email = document.getElementById("toEmail"); // id fixed
+  const email = document.getElementById("email");
   const clientName = document.getElementById("clientName");
   const emailBlock = document.getElementById("emailFormBlock");
   const clientNameBlock = document.getElementById("clientNameFormBlock");
@@ -112,39 +112,48 @@ const translatedSections = sections[currentLanguage];
   const subscriptionStatusToast = document.getElementById("statusToast");
   const subscriptionToastCloseButton = subscriptionStatusToast.querySelector(".toast__close-button");
 
-  function validateEmail(value) {
-    const trimmed = value?.trim();
-    if (!trimmed) return "blank";
-    return regex.EMAIL.test(trimmed) ? "" : "wrong-format";
+  function validateEmail(email) {
+    const trimmedEmail = email?.trim();
+    if (!trimmedEmail) return "blank";
+    const validEmail = regex.EMAIL.test(trimmedEmail);
+    if (!validEmail) return "wrong-format";
+    return "";
   }
 
   function validateClientName(value) {
     const trimmed = value?.trim();
     if (!trimmed) return "blank";
     const valid = /^[a-zA-Z0-9_-]+$/.test(trimmed);
-    return valid ? "" : "wrong-format";
+    if (!valid) return "wrong-format";
+    return "";
   }
 
-  function updateFieldFeedback(blockEl, errorId) {
-    blockEl.querySelectorAll(".form-block__feedback").forEach((fb) => {
-      fb.style.display = errorId && fb.dataset.feedback === errorId ? "block" : "none";
-      if (!errorId) fb.style.display = "none";
-    });
+  function updateFeedback(errorMessage) {
+    if (errorMessage) {
+      emailBlock.querySelectorAll(".form-block__feedback").forEach((feedback) => {
+        feedback.style.display = feedback.dataset.feedback === errorMessage ? "block" : "none";
+      });
+      submitButton.disabled = true;
+    } else {
+      emailBlock.querySelectorAll(".form-block__feedback").forEach((feedback) => {
+        feedback.style.display = "none";
+      });
+      submitButton.disabled = false;
+    }
   }
 
-  function getCurrentErrors() {
-    return {
-      email: validateEmail(email.value),
-      client: validateClientName(clientName.value),
-    };
-  }
-
-  function updateSubmitState() {
-    const { email: emailErr, client: clientErr } = getCurrentErrors();
-    // Enable only if both fields have been touched and both are valid
-    const allTouched = touchedEmail && touchedClientName;
-    const allValid = !emailErr && !clientErr;
-    submitButton.disabled = !(allTouched && allValid);
+  function updateClientNameFeedback(errorMessage) {
+    if (errorMessage) {
+      clientNameBlock.querySelectorAll(".form-block__feedback").forEach((feedback) => {
+        feedback.style.display = feedback.dataset.feedback === errorMessage ? "block" : "none";
+      });
+      submitButton.disabled = true;
+    } else {
+      clientNameBlock.querySelectorAll(".form-block__feedback").forEach((feedback) => {
+        feedback.style.display = "none";
+      });
+      submitButton.disabled = false;
+    }
   }
 
   function openToast(status) {
@@ -160,13 +169,12 @@ const translatedSections = sections[currentLanguage];
   function closeToast() {
     subscriptionStatusToast.classList.remove("active");
     subscriptionToastCloseButton.disabled = true;
-    // respect stored state
     if (+submitButton.dataset.shouldDisable) {
       submitButton.disabled = true;
     } else {
-      updateSubmitState();
+      submitButton.disabled = false;
     }
-    submitButton.removeAttribute("data-should-disable"); // fix attribute name
+    submitButton.removeAttribute("should-disable");
   }
 
   function resetForm() {
@@ -174,41 +182,32 @@ const translatedSections = sections[currentLanguage];
     touchedEmail = false;
     touchedClientName = false;
     submitButton.disabled = true;
-    // Hide all feedback
-    updateFieldFeedback(emailBlock, "");
-    updateFieldFeedback(clientNameBlock, "");
   }
 
-  // Email handlers
   email.addEventListener("input", (e) => {
-    const err = validateEmail(e.target.value);
-    if (err && !touchedEmail) return;
-    updateFieldFeedback(emailBlock, err);
-    updateSubmitState();
+    const errorMessage = validateEmail(e.target.value);
+    if (errorMessage && !touchedEmail) return;
+    updateFeedback(errorMessage);
   });
 
-  email.addEventListener("blur", function onEmailBlur(e) {
+  email.addEventListener("blur", function listenEmailBlur(e) {
     touchedEmail = true;
-    const err = validateEmail(e.target.value);
-    updateFieldFeedback(emailBlock, err);
-    updateSubmitState();
-    email.removeEventListener("blur", onEmailBlur);
+    const errorMessage = validateEmail(e.target.value);
+    updateFeedback(errorMessage);
+    email.removeEventListener("blur", listenEmailBlur);
   });
 
-  // Client handlers
   clientName.addEventListener("input", (e) => {
-    const err = validateClientName(e.target.value);
-    if (err && !touchedClientName) return;
-    updateFieldFeedback(clientNameBlock, err);
-    updateSubmitState();
+    const errorMessage = validateClientName(e.target.value);
+    if (errorMessage && !touchedClientName) return;
+    updateClientNameFeedback(errorMessage);
   });
 
-  clientName.addEventListener("blur", function onClientBlur(e) {
+  clientName.addEventListener("blur", function listenClientNameBlur(e) {
     touchedClientName = true;
-    const err = validateClientName(e.target.value);
-    updateFieldFeedback(clientNameBlock, err);
-    updateSubmitState();
-    clientName.removeEventListener("blur", onClientBlur);
+    const errorMessage = validateClientName(e.target.value);
+    updateClientNameFeedback(errorMessage);
+    clientName.removeEventListener("blur", listenClientNameBlur);
   });
 
   form?.addEventListener("submit", async function (e) {
@@ -226,21 +225,18 @@ const translatedSections = sections[currentLanguage];
       language: raw.language,
     };
 
-    const resp = await fetch(endpoints.subscribe, {
+    const { status } = await fetch(endpoints.subscribe, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(body),
     });
 
-    const { status } = resp;
-
     openToast(status);
     submitButton.classList.remove("loading");
-
     if (+status >= 400) {
       submitButton.setAttribute("data-should-disable", "0");
-      // Re-evaluate button after showing toast
-      updateSubmitState();
     } else {
       submitButton.setAttribute("data-should-disable", "1");
       resetForm();
@@ -254,4 +250,3 @@ const translatedSections = sections[currentLanguage];
     clearTimeout(timer);
   });
 </script>
-

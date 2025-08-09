@@ -191,6 +191,20 @@
         }
       ]
     },
+    "form_client_input": {
+      "label": "Client",
+      "placeholder": "Please enter one word no spaces",
+      "errors": [
+        {
+          "id": "blank",
+          "message": "The client is mandatory"
+        },
+        {
+          "id": "wrong-format",
+          "message": "Invalid client name"
+        }
+      ]
+    },
     "form_submit_button": {
       "default": "Sign Up Now",
       "loading": "Signing Up..."

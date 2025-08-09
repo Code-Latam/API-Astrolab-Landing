@@ -191,6 +191,20 @@
         }
       ]
     },
+    "form_client_input": {
+      "label": "Cliente",
+      "placeholder": "Por favor ingrese una sola palabra sin espacios",
+      "errors": [
+        {
+          "id": "blank",
+          "message": "El cliente es obligatorio"
+        },
+        {
+          "id": "wrong-format",
+          "message": "Nombre de cliente no válido"
+        }
+      ]
+    },
     "form_submit_button": {
       "default": "Regístrate Ahora",
       "loading": "Registrándote..."
